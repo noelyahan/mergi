@@ -11,3 +11,4 @@ dist
 !testdata/**/*.jpg
 !testdata/**/*.gif
 !testdata/**/*.png
+!logo/**/*.png
