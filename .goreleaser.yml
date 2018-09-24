@@ -3,7 +3,7 @@ builds:
 - env:
     - CGO_ENABLED=0
   binary: mergi
-  main: cmd/mergi/main.go
+  main: ./cmd/mergi
   goos:
     - windows
     - darwin
