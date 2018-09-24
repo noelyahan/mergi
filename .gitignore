@@ -1,0 +1,13 @@
+.idea/
+dist
+*.gif
+*.jpg
+*.jpeg
+*.png
+!examples/**/*.jpg
+!examples/**/*.png
+!examples/**/*.jpeg
+!examples/**/*.gif
+!testdata/**/*.jpg
+!testdata/**/*.gif
+!testdata/**/*.png
