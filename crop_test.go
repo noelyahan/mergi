@@ -15,7 +15,7 @@ func TestCropWithNegativeBounds(t *testing.T) {
 	imgs := getImages("T")
 	_, err := Crop(imgs[0], image.Pt(-10, -10), image.Pt(-1, -1))
 	if err == nil {
-		t.Errorf("Expect error got ", err)
+		t.Errorf("Expect error got [%v]", err)
 		return
 	}
 }

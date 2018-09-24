@@ -42,7 +42,7 @@ func TestWithURLs(t *testing.T) {
 	for _, test := range tests {
 		img, err := mergi.Import(loader.NewFileImporter(test.in))
 
-		if err != nil {
+		if err == nil {
 			t.Error("Error", err)
 		} else {
 			mergi.Export(loader.NewFileExporter(img, "out.png"))
