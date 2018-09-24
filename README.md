@@ -1,4 +1,5 @@
 ![Mergi Logo](./logo/logo.png)
+![](https://travis-ci.com/noelyahan/mergi.svg?branch=master)
 
 ## :tada: Basic Overview
 
