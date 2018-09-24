@@ -1,4 +1,5 @@
 ![Mergi Logo](./logo/logo.png)
+[![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/noelyahan/mergi)
 [![Build Status](https://travis-ci.com/noelyahan/mergi.svg?branch=master)](https://travis-ci.com/noelyahan/mergi)
 [![codecov](https://codecov.io/gh/noelyahan/mergi/branch/master/graph/badge.svg)](https://codecov.io/gh/noelyahan/mergi)
 [![Go Report Card](https://goreportcard.com/badge/github.com/noelyahan/mergi)](https://goreportcard.com/report/github.com/noelyahan/mergi)
