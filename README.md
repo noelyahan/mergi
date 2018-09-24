@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.com/noelyahan/mergi.svg?branch=master)](https://travis-ci.com/noelyahan/mergi)
 [![codecov](https://codecov.io/gh/noelyahan/mergi/branch/master/graph/badge.svg)](https://codecov.io/gh/noelyahan/mergi)
 [![Go Report Card](https://goreportcard.com/badge/github.com/noelyahan/mergi)](https://goreportcard.com/report/github.com/noelyahan/mergi)
+[![Teligram Chat](https://img.shields.io/badge/telegram-join%20chat-blue.svg)](https://t.me/joinchat/IzEQ3xEXCiRCh8L2q6pTLg)
 
 ## :tada: Basic Overview
 
