@@ -35,7 +35,7 @@ Usage:
  ╔╦╗╔═╗╦═╗╔═╗╦
  ║║║║╣ ╠╦╝║ ╦║
  ╩ ╩╚═╝╩╚═╚═╝╩
- let's go & makes imagine fun
+ let's go & make imaging fun
  http://mergi.io
  version 1.0.0
 
