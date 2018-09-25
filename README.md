@@ -1,4 +1,10 @@
-![Mergi Logo](./logo/logo.png)
+<p align="center">
+  <img src="./logo/logo.png"/>
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/imaging-4%20terminal%20lovers-00afef.svg?longCache=true&style=for-the-badge"/>
+</p>
+
 [![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/noelyahan/mergi)
 [![Build Status](https://travis-ci.com/noelyahan/mergi.svg?branch=master)](https://travis-ci.com/noelyahan/mergi)
 [![codecov](https://codecov.io/gh/noelyahan/mergi/branch/master/graph/badge.svg)](https://codecov.io/gh/noelyahan/mergi)
