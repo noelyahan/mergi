@@ -102,7 +102,7 @@ func setFlagUsage() func() {
  ╔╦╗╔═╗╦═╗╔═╗╦
  ║║║║╣ ╠╦╝║ ╦║
  ╩ ╩╚═╝╩╚═╚═╝╩
- let's go & makes imagine fun
+ let's go & make imaging fun
  http://mergi.io
  version %s
 

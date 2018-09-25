@@ -22,7 +22,6 @@ func NewURLImporter(url string) Importer {
 
 func (o httpURL) Import() (image.Image, error) {
 	errMsg := fmt.Sprintf("Mergi can't find the file or file is invalid %s", o.url)
-	ext := getExt(o.url)
 	if !isValidURL(o.url) {
 		return nil, fmt.Errorf("Mergi found a invalid URL: %s", o.url)
 	}
@@ -33,7 +32,7 @@ func (o httpURL) Import() (image.Image, error) {
 	reader := resp.Body
 	cType := resp.Header.Get("Content-Type")
 	cType = strings.Replace(cType, "/", ".", -1)
-	ext = getExt(cType)
+	ext := getExt(cType)
 
 	var img image.Image
 	if ext == "jpg" || ext == "jpeg" {

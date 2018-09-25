@@ -62,7 +62,7 @@ func (o file) Export() error {
 		return errors.New(msg)
 	}
 	if ext == "jpg" || ext == "jpeg" {
-		err = jpeg.Encode(f, img, &jpeg.Options{jpeg.DefaultQuality})
+		err = jpeg.Encode(f, img, &jpeg.Options{Quality: jpeg.DefaultQuality})
 	} else if ext == "png" {
 		err = png.Encode(f, img)
 	}
