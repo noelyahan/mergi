@@ -1,9 +1,9 @@
 package mergi_test
 
 import (
-	"github.com/pkg/errors"
 	"github.com/noelyahan/mergi"
 	"github.com/noelyahan/mergi/loader"
+	"github.com/pkg/errors"
 	"testing"
 )
 
