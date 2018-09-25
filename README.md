@@ -1,7 +1,5 @@
-<p align="center">
-  <img src="./logo/logo.png"/>
-</p>
-<p align="center">
+![Mergi](./logo/logo.png)
+<p>
   <img src="https://img.shields.io/badge/imaging-4%20terminal%20lovers-00afef.svg?longCache=true&style=for-the-badge"/>
 </p>
 
