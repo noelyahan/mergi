@@ -1,7 +1,12 @@
 ![Mergi](./logo/logo.png)
+
 <p>
   <img src="https://img.shields.io/badge/imaging-4%20terminal%20lovers-00afef.svg?longCache=true&style=for-the-badge"/>
 </p>
+
+Result                    | Terminal Code
+-----------------------------------|------------------------------------------
+![Intro](https://i.imgur.com/UmbQ5CJ.gif) | `mergi -t TT -i https://raw.githubusercontent.com/ashleymcnamara/gophers/master/Facepalm_Gopher.png -r "131 131" -i https://raw.githubusercontent.com/ashleymcnamara/gophers/master/Facepalm_Picard_Gopher.png -r "131 131" -a "sprite 50"`
 
 [![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/noelyahan/mergi)
 [![Build Status](https://travis-ci.com/noelyahan/mergi.svg?branch=master)](https://travis-ci.com/noelyahan/mergi)
