@@ -1,2 +1,2 @@
 ![srcImage](logo.png)
-[Logo Credits](onlinelogomaker.com/logomaker/?project=20389125)
+[Logo Credits](https://www.onlinelogomaker.com/logomaker/?project=20389125)
