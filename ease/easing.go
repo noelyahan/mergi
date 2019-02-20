@@ -4,6 +4,23 @@ import "math"
 
 type Move func(t float64) float64
 
+
+func mapVlaues(value, start1, stop1, start2, stop2 float64) float64 {
+	return start2 + (stop2-start2)*((value-start1)/(stop1-start1))
+}
+
+func AnimateXY(move Move, px, minX, maxX, minY, maxY float64) (y float64) {
+	t := mapVlaues(px, minX, maxX, 0, 1)
+	my := move(t)
+	return mapVlaues(my, 0, 1, minY, maxY)
+}
+
+func AnimateYX(move Move, py, minX, maxX, minY, maxY float64) (x float64) {
+	t := mapVlaues(py, minY, maxY, 0, 1)
+	mx := move(t)
+	return mapVlaues(mx, 0, 1, minX, maxX)
+}
+
 // this contains easing animations algorithms
 // The visualization of theses algorothms can be found on > http://easings.net/
 
