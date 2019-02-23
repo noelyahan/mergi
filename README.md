@@ -209,16 +209,14 @@ mergi.Export(loader.NewAnimationExporter(gif, "out.gif"))
 
 #### 🔥 Easing
 
-[]()                   | []() | []()
------------------------|----------------------|----------------------
-![dstImage](testdata/doc/ease/OutQuint.gif)<center>OutQuint</center> | ![dstImage](testdata/doc/ease/InBack.gif)<center>InBack</center> | ![dstImage](testdata/doc/ease/InOutQuad.gif)<center>InOutQuad</center>
-![dstImage](testdata/doc/ease/OutQuart.gif)<center>OutQuart</center> | ![dstImage](testdata/doc/ease/InBounce.gif)<center>InBounce</center> | ![dstImage](testdata/doc/ease/InOutExpo.gif)<center>InOutExpo</center>
-![dstImage](testdata/doc/ease/OutQuad.gif)<center>OutQuad</center> | ![dstImage](testdata/doc/ease/InCirc.gif)<center>InCirc</center> | ![dstImage](testdata/doc/ease/InOutCubic.gif)<center>InOutCubic</center>
-![dstImage](testdata/doc/ease/OutExpo.gif)<center>OutExpo</center> | ![dstImage](testdata/doc/ease/InCubic.gif)<center>InCubic</center> | ![dstImage](testdata/doc/ease/InOutCirc.gif)<center>InOutCirc</center>
-![dstImage](testdata/doc/ease/OutCubic.gif)<center>OutCubic</center> | ![dstImage](testdata/doc/ease/InElastic.gif)<center>InElastic</center> | ![dstImage](testdata/doc/ease/InOutBounce.gif)<center>InOutBounce</center>
-![dstImage](testdata/doc/ease/OutBounce.gif)<center>OutBounce</center> | ![dstImage](testdata/doc/ease/InExpo.gif)<center>InExpo</center> | ![dstImage](testdata/doc/ease/InOutBack.gif)<center>InOutBack</center>
-![dstImage](testdata/doc/ease/Linear.gif)<center>Linear</center> | ![dstImage](testdata/doc/ease/InOutQuart.gif)<center>InOutQuart</center> | ![dstImage](testdata/doc/ease/InOutSine.gif)<center>InOutSine</center>
-![dstImage](testdata/doc/ease/InSine.gif)<center>InSine</center> | ![dstImage](testdata/doc/ease/InQuint.gif)<center>InQuint</center>
+[]()                   | []() | []() | []()
+-----------------------|----------------------|----------------------|----------------------
+![dstImage](testdata/doc/ease/InBounce.gif)<br/><center>InBounce</center> | ![dstImage](testdata/doc/ease/InBack.gif)<br/><center>InBack</center> | ![dstImage](testdata/doc/ease/InOutQuad.gif)<center>InOutQuad</center> | ![dstImage](testdata/doc/ease/InSine.gif)<br/><center>InSine</center>
+![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InElastic.gif)<br/><center>InElastic</center> | ![dstImage](testdata/doc/ease/InOutExpo.gif)<center>InOutExpo</center> | ![dstImage](testdata/doc/ease/Linear.gif)<br/><center>Linear</center>
+![dstImage](testdata/doc/ease/InOutBounce.gif)<br/><center>InOutBounce</center> | ![dstImage](testdata/doc/ease/InCirc.gif)<br/><center>InCirc</center> | ![dstImage](testdata/doc/ease/InOutCubic.gif)<center>InOutCubic</center> | ![dstImage](testdata/doc/ease/InOutQuart.gif)<br/><center>InOutQuart</center>
+![dstImage](testdata/doc/ease/InOutBack.gif)<br/><center>InOutBack</center> | ![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InOutCirc.gif)<center>InOutCirc</center> | ![dstImage](testdata/doc/ease/InOutSine.gif)<center>InOutSine</center>
+![dstImage](testdata/doc/ease/InExpo.gif)<br/><center>InExpo</center> | ![dstImage](testdata/doc/ease/OutBounce.gif)<br/><center>OutBounce</center> | ![dstImage](testdata/doc/ease/InQuint.gif)<center>InQuint</center>
+
 
 
 
