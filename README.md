@@ -25,6 +25,7 @@ Image manipulation [<b>go library</b>](http://godoc.org/github.com/noelyahan/mer
 - 💣 Resize
 - 🖃 Watermark
 - 💖 Animate
+- 🔥 Easing
 
 <br />
 
@@ -208,31 +209,19 @@ mergi.Export(loader.NewAnimationExporter(gif, "out.gif"))
 
 #### 🔥 Easing
 
-Type                   | Result Animation
------------------------|----------------------
-InBack | ![dstImage](testdata/doc/ease/InBack.gif)
-InBounce | ![dstImage](testdata/doc/ease/InBounce.gif)
-InCirc | ![dstImage](testdata/doc/ease/InCirc.gif)
-InCubic | ![dstImage](testdata/doc/ease/InCubic.gif)
-InElastic | ![dstImage](testdata/doc/ease/InElastic.gif)
-InExpo | ![dstImage](testdata/doc/ease/InExpo.gif)
-InOutBack | ![dstImage](testdata/doc/ease/InOutBack.gif)
-InOutBounce | ![dstImage](testdata/doc/ease/InOutBounce.gif)
-InOutCirc | ![dstImage](testdata/doc/ease/InOutCirc.gif)
-InOutCubic | ![dstImage](testdata/doc/ease/InOutCubic.gif)
-InOutExpo | ![dstImage](testdata/doc/ease/InOutExpo.gif)
-InOutQuad | ![dstImage](testdata/doc/ease/InOutQuad.gif)
-InOutQuart | ![dstImage](testdata/doc/ease/InOutQuart.gif)
-InOutSine | ![dstImage](testdata/doc/ease/InOutSine.gif)
-InQuint | ![dstImage](testdata/doc/ease/InQuint.gif)
-InSine | ![dstImage](testdata/doc/ease/InSine.gif)
-Linear | ![dstImage](testdata/doc/ease/Linear.gif)
-OutBounce | ![dstImage](testdata/doc/ease/OutBounce.gif)
-OutCubic | ![dstImage](testdata/doc/ease/OutCubic.gif)
-OutExpo | ![dstImage](testdata/doc/ease/OutExpo.gif)
-OutQuad | ![dstImage](testdata/doc/ease/OutQuad.gif)
-OutQuart | ![dstImage](testdata/doc/ease/OutQuart.gif)
-OutQuint | ![dstImage](testdata/doc/ease/OutQuint.gif)
+[]()                   | []() | []()
+-----------------------|----------------------|----------------------
+![dstImage](testdata/doc/ease/OutQuint.gif)<center>OutQuint</center> | ![dstImage](testdata/doc/ease/InBack.gif)<center>InBack</center> | ![dstImage](testdata/doc/ease/InOutQuad.gif)<center>InOutQuad</center>
+![dstImage](testdata/doc/ease/OutQuart.gif)<center>OutQuart</center> | ![dstImage](testdata/doc/ease/InBounce.gif)<center>InBounce</center> | ![dstImage](testdata/doc/ease/InOutExpo.gif)<center>InOutExpo</center>
+![dstImage](testdata/doc/ease/OutQuad.gif)<center>OutQuad</center> | ![dstImage](testdata/doc/ease/InCirc.gif)<center>InCirc</center> | ![dstImage](testdata/doc/ease/InOutCubic.gif)<center>InOutCubic</center>
+![dstImage](testdata/doc/ease/OutExpo.gif)<center>OutExpo</center> | ![dstImage](testdata/doc/ease/InCubic.gif)<center>InCubic</center> | ![dstImage](testdata/doc/ease/InOutCirc.gif)<center>InOutCirc</center>
+![dstImage](testdata/doc/ease/OutCubic.gif)<center>OutCubic</center> | ![dstImage](testdata/doc/ease/InElastic.gif)<center>InElastic</center> | ![dstImage](testdata/doc/ease/InOutBounce.gif)<center>InOutBounce</center>
+![dstImage](testdata/doc/ease/OutBounce.gif)<center>OutBounce</center> | ![dstImage](testdata/doc/ease/InExpo.gif)<center>InExpo</center> | ![dstImage](testdata/doc/ease/InOutBack.gif)<center>InOutBack</center>
+![dstImage](testdata/doc/ease/Linear.gif)<center>Linear</center> | ![dstImage](testdata/doc/ease/InOutQuart.gif)<center>InOutQuart</center> | ![dstImage](testdata/doc/ease/InOutSine.gif)<center>InOutSine</center>
+![dstImage](testdata/doc/ease/InSine.gif)<center>InSine</center> | ![dstImage](testdata/doc/ease/InQuint.gif)<center>InQuint</center>
+
+
+
 
 
 <br />
