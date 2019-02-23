@@ -9,7 +9,7 @@ func mapVlaues(value, start1, stop1, start2, stop2 float64) float64 {
 	return start2 + (stop2-start2)*((value-start1)/(stop1-start1))
 }
 
-func AnimatePoints(move Move, from, to image.Point, fps float64) (arr []image.Point) {
+func AnimatePoints(move Animation, from, to image.Point, fps float64) (arr []image.Point) {
 	myMin := math.MaxFloat64
 	myArr := make([]float64, 0)
 	mxArr := make([]float64, 0)

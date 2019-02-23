@@ -8,22 +8,21 @@ import (
 )
 
 func main() {
-	cherry, _ := mergi.Import(loader.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
-	coffee, _ := mergi.Import(loader.NewFileImporter("testdata/coffee-171653_960_720.jpg"))
+	mergiLogo, _ := mergi.Import(loader.NewFileImporter("testdata/mergi_logo_watermark.png"))
+	//coffee, _ := mergi.Import(loader.NewFileImporter("testdata/coffee-171653_960_720.jpg"))
 
 	// scale down
-	cherrySmall, _ := mergi.Resize(cherry, uint(cherry.Bounds().Max.X/4), uint(cherry.Bounds().Max.Y/4))
-	coffeeSmall, _ := mergi.Resize(coffee, uint(coffee.Bounds().Max.X/4), uint(coffee.Bounds().Max.Y/4))
+	mergiLogoSmall, _ := mergi.Resize(mergiLogo, uint(mergiLogo.Bounds().Max.X/2), uint(mergiLogo.Bounds().Max.Y/2))
 
-	cropAnimation(cherrySmall)
-	watermarkAnimation(coffee, cherrySmall)
-	cropMergeAnimation(coffeeSmall, cherrySmall)
+	//cropAnimation(mergiLogoSmall, ease.InBounce)
+	//watermarkAnimation(coffee, mergiLogoSmall, ease.OutBounce)
+	cropMergeAnimation(mergiLogoSmall, mergiLogoSmall, ease.InBounce, ease.InElastic)
 }
 
-func cropAnimation(cherry image.Image) {
+func cropAnimation(cherry image.Image, move ease.Animation) {
 	images := make([]image.Image, 0)
 
-	arr := ease.AnimatePoints(ease.OutBounce, image.Pt(0, 0), image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y), 3.5)
+	arr := ease.AnimatePoints(move, image.Pt(0, 0), image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y*4), 3.5)
 	// animate with crop operation
 	for _, v := range arr {
 		img, _ := mergi.Crop(cherry, v, image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y))
@@ -34,9 +33,9 @@ func cropAnimation(cherry image.Image) {
 	mergi.Export(loader.NewAnimationExporter(gif, "examples/easing/res/crop_ease.gif"))
 }
 
-func watermarkAnimation(coffee, cherry image.Image) {
+func watermarkAnimation(coffee, cherry image.Image, move ease.Animation) {
 	images := make([]image.Image, 0)
-	arr := ease.AnimatePoints(ease.OutBounce, image.Pt(0, 0), image.Pt(coffee.Bounds().Max.X-cherry.Bounds().Max.X, coffee.Bounds().Max.Y-cherry.Bounds().Max.Y), 3.5)
+	arr := ease.AnimatePoints(move, image.Pt(0, 0), image.Pt(coffee.Bounds().Max.X-cherry.Bounds().Max.X, coffee.Bounds().Max.Y-cherry.Bounds().Max.Y), 3.5)
 	// animate with watermark operation
 	for _, v := range arr {
 		img, _ := mergi.Watermark(cherry, coffee, v)
@@ -47,12 +46,12 @@ func watermarkAnimation(coffee, cherry image.Image) {
 	mergi.Export(loader.NewAnimationExporter(gif, "examples/easing/res/watermark_ease.gif"))
 }
 
-func cropMergeAnimation(coffee, cherry image.Image) {
+func cropMergeAnimation(coffee, cherry image.Image, move1, move2 ease.Animation) {
 	images := make([]image.Image, 0)
 
 	// animate with resize, crop and merge operation
-	cherryAnimArr := ease.AnimatePoints(ease.InBounce, image.Pt(0, 0), image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y), 3.5)
-	coffeeAnimArr := ease.AnimatePoints(ease.InElastic, image.Pt(0, 0), image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y), 3.5)
+	cherryAnimArr := ease.AnimatePoints(move1, image.Pt(0, 0), image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y), 3.5)
+	coffeeAnimArr := ease.AnimatePoints(move2, image.Pt(0, 0), image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y), 3.5)
 
 	cherryArr := make([]image.Image, 0)
 	coffeeArr := make([]image.Image, 0)

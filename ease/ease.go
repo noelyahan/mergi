@@ -4,7 +4,12 @@ import (
 	"math"
 )
 
-type Move func(t float64) float64
+// TODO issue: InOutElastic
+// TODO issue: OutBack
+// TODO issue: OutCirc
+// TODO issue: OutElastic
+
+type Animation func(t float64) float64
 
 
 // this contains easing animations algorithms
@@ -207,8 +212,8 @@ func OutBounce(t float64) float64 {
 }
 
 func OutCirc(t float64) float64 {
-	t = t - 1
-	return 1.0 * math.Sqrt(1-(t*t))
+	t = t - 1.0
+	return 1.0 * math.Sqrt(1.0-(t*t))
 }
 
 func OutCubic(t float64) float64 {
@@ -235,7 +240,7 @@ func OutElastic(t float64) float64 {
 	} else {
 		s = p / (2.0 * math.Pi) * math.Asin(1.0/a)
 	}
-	return a*math.Pow(2.0, -10*t)*math.Sin((t*1-s)*(2.0*math.Pi)/p) + 1
+	return a*math.Pow(2.0, -10*t)*math.Sin((t*1.0-s)*(2.0*math.Pi)/p) + 1
 }
 
 func OutExpo(t float64) float64 {
@@ -250,13 +255,13 @@ func OutQuad(t float64) float64 {
 }
 
 func OutQuart(t float64) float64 {
-	t = t/1 - 1
-	return -1 * (t*t*t*t - 1)
+	t = t/1.0 - 1.0
+	return -1.0 * (t*t*t*t - 1)
 }
 
 func OutQuint(t float64) float64 {
 	t = t - 1
-	return (t*t*t*t*t + 1)
+	return t*t*t*t*t + 1.0
 }
 
 func OutSine(t float64) float64 {

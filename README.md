@@ -206,6 +206,37 @@ mergi.Export(loader.NewAnimationExporter(gif, "out.gif"))
 
 <br />
 
+#### 🔥 Easing
+
+Type                   | Result Animation
+-----------------------|----------------------
+InBack | ![dstImage](testdata/doc/ease/InBack.gif)
+InBounce | ![dstImage](testdata/doc/ease/InBounce.gif)
+InCirc | ![dstImage](testdata/doc/ease/InCirc.gif)
+InCubic | ![dstImage](testdata/doc/ease/InCubic.gif)
+InElastic | ![dstImage](testdata/doc/ease/InElastic.gif)
+InExpo | ![dstImage](testdata/doc/ease/InExpo.gif)
+InOutBack | ![dstImage](testdata/doc/ease/InOutBack.gif)
+InOutBounce | ![dstImage](testdata/doc/ease/InOutBounce.gif)
+InOutCirc | ![dstImage](testdata/doc/ease/InOutCirc.gif)
+InOutCubic | ![dstImage](testdata/doc/ease/InOutCubic.gif)
+InOutExpo | ![dstImage](testdata/doc/ease/InOutExpo.gif)
+InOutQuad | ![dstImage](testdata/doc/ease/InOutQuad.gif)
+InOutQuart | ![dstImage](testdata/doc/ease/InOutQuart.gif)
+InOutSine | ![dstImage](testdata/doc/ease/InOutSine.gif)
+InQuint | ![dstImage](testdata/doc/ease/InQuint.gif)
+InSine | ![dstImage](testdata/doc/ease/InSine.gif)
+Linear | ![dstImage](testdata/doc/ease/Linear.gif)
+OutBounce | ![dstImage](testdata/doc/ease/OutBounce.gif)
+OutCubic | ![dstImage](testdata/doc/ease/OutCubic.gif)
+OutExpo | ![dstImage](testdata/doc/ease/OutExpo.gif)
+OutQuad | ![dstImage](testdata/doc/ease/OutQuad.gif)
+OutQuart | ![dstImage](testdata/doc/ease/OutQuart.gif)
+OutQuint | ![dstImage](testdata/doc/ease/OutQuint.gif)
+
+
+<br />
+
 Learn more [examples](examples)
 
 ## 💻 Contribute
