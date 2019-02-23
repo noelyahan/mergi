@@ -10,6 +10,7 @@ import (
 	"image/jpeg"
 	"errors"
 	"fmt"
+	"image/gif"
 )
 
 type b64Importer struct {
@@ -22,6 +23,12 @@ type b64Exporter struct {
 	cb func(data string)
 }
 
+type b64AnimExporter struct {
+	ext string
+	anim gif.GIF
+	cb func(data string)
+}
+
 func NewBase64Importer(data string) Importer {
 	return b64Importer{data}
 }
@@ -29,6 +36,32 @@ func NewBase64Importer(data string) Importer {
 func NewBase64Exporter(ext string, img image.Image, cb func(data string)) Exporter {
 	return b64Exporter{ext, img, cb}
 }
+
+func NewBase64AnimationExporter(ext string, anim gif.GIF, cb func(data string)) Exporter {
+	return b64AnimExporter{ext, anim, cb}
+}
+
+func (o b64AnimExporter) Export() (err error) {
+	if o.ext != "gif" {
+		return errors.New(fmt.Sprintf("Curent extension %s is not supported", o.ext))
+	}
+
+	b := make([]byte, 0)
+	buf := bytes.NewBuffer(b)
+	err = gif.EncodeAll(buf, &o.anim)
+
+	if err != nil {
+		return errors.New("Sorry Mergi cannot encode the animation")
+	}
+
+	str := base64.StdEncoding.EncodeToString(buf.Bytes())
+	if o.cb != nil {
+		s := fmt.Sprintf("data:image/%s;base64,", o.ext)
+		o.cb(s + str)
+	}
+	return
+}
+
 
 func (o b64Exporter) Export() (err error) {
 	img := o.img
@@ -41,6 +74,8 @@ func (o b64Exporter) Export() (err error) {
 		err = jpeg.Encode(buf, img, &jpeg.Options{Quality: jpeg.DefaultQuality})
 	} else if o.ext == "png" {
 		err = png.Encode(buf, img)
+	} else if o.ext == "gif" {
+		err = gif.Encode(buf, o.img, nil)
 	}
 	if err != nil {
 		return errors.New("Sorry Mergi cannot encode the image")
