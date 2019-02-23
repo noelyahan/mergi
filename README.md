@@ -245,8 +245,11 @@ for _, from := range easingPoints {
     images = append(images, img)
 }
 
+// animate images as gif
+fps := 2
+gif, _ := mergi.Animate(images, fps)
+
 // export gif as a file
-gif, _ := mergi.Animate(images, 2)
 mergi.Export(loader.NewAnimationExporter(gif, "examples/easing/res/ease.gif"))
 ```
 
