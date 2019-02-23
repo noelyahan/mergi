@@ -73,29 +73,29 @@ Usage:
 
 Image 1                     | Image 2                               | Result Image
 -----------------------------------|-------------------------------------------|------------------------------------------
-![dstImage](testdata/glass-3306625_240_160.jpg)|![srcImage](testdata/glass-3306662_240_160.jpg)  | ![dstImage](testdata/doc/merge_tt.png)
-![dstImage](testdata/glass-3306625_240_160.jpg)|![srcImage](testdata/glass-3306662_240_160.jpg)  | ![dstImage](testdata/doc/merge_tb.png)
+![dstImage](testdata/mergi_bg_1.png)|![srcImage](testdata/mergi_bg_2.png)  | ![dstImage](testdata/doc/merge_tt.png)
+![dstImage](testdata/mergi_bg_1.png)|![srcImage](testdata/mergi_bg_2.png)  | ![dstImage](testdata/doc/merge_tb.png)
 
 ##### `Mergi Tool`
 ###### Horizontal 
 ```bash
 mergi \
 -t TT \
--i testdata/glass-3306625_240_160.jpg \
--i testdata/glass-3306662_240_160.jpg
+-i testdata/mergi_bg_1.png \
+-i testdata/mergi_bg_2.png
 ```
 
 ###### Vertical 
 ```bash
 mergi \
 -t TB \
--i testdata/glass-3306625_240_160.jpg \
--i testdata/glass-3306662_240_160.jpg
+-i testdata/mergi_bg_1.png \
+-i testdata/mergi_bg_2.png
 ```
 ##### `Mergi Library`
 ```go
-image1, _ := mergi.Import(loader.NewFileImporter("./testdata/glass-3306625_240_160.jpg"))
-image2, _ := mergi.Import(loader.NewFileImporter("./testdata/glass-3306662_240_160.jpg"))
+image1, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
+image2, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_2.png"))
 
 horizontalImage, _ := mergi.Merge("TT", []image.Image{image1, image2})
 mergi.Export(loader.NewFileExporter(horizontalImage, "horizontal.png"))
@@ -110,19 +110,19 @@ mergi.Export(loader.NewFileExporter(verticalImage, "vertical.png"))
 #### ✂️ Crop
 Image                    | Result Image
 -----------------------------------|------------------------------------------
-![srcImage](testdata/glass-3306662_240_160.jpg) | ![dstImage](testdata/doc/crop.png)
+![srcImage](testdata/mergi_bg_1.png) | ![dstImage](testdata/doc/crop.png)
 
 ##### `Mergi Tool`
 ```bash
 mergi \
--i testdata/glass-3306662_240_160.jpg \
--c "0 0 120 160"
+-i testdata/mergi_bg_1.png \
+-c "10 40 200 110"
 ```
 
 ##### `Mergi Library`
 ```go
-img, _ := mergi.Import(loader.NewFileImporter("./testdata/glass-3306662_240_160.jpg"))
-res, _ := mergi.Crop(img, image.Pt(0, 0), image.Pt(120, 160))
+img, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
+res, _ := mergi.Crop(img, image.Pt(10, 40), image.Pt(200, 110))
 mergi.Export(loader.NewFileExporter(res, "crop.png"))
 ```
 
@@ -131,19 +131,19 @@ mergi.Export(loader.NewFileExporter(res, "crop.png"))
 #### 💣 Resize
 Image                    | Result Image
 -----------------------------------|-------------------------------------------
-![srcImage](testdata/glass-3306662_240_160.jpg) | ![dstImage](testdata/doc/resize.png)
+![srcImage](testdata/mergi_bg_1.png)  | ![dstImage](testdata/doc/resize.png)
 
 ##### `Mergi Tool`
 ```bash
 mergi \
--i testdata/glass-3306662_240_160.jpg \
--r "80 120"
+-i testdata/mergi_bg_1.png \
+-r "180 80"
 ```
 
 ##### `Mergi Library`
 ```go
-img, _ := mergi.Import(loader.NewFileImporter("./testdata/glass-3306662_240_160.jpg"))
-res, _ := mergi.Resize(img, uint(80), uint(120))
+img, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
+res, _ := mergi.Resize(img, uint(180), uint(80))
 mergi.Export(loader.NewFileExporter(res, "resize.png"))
 ```
 
@@ -152,21 +152,21 @@ mergi.Export(loader.NewFileExporter(res, "resize.png"))
 #### 🖃 Watermark
 Image                   | Watermark Image                             | Result Image
 -----------------------------------|-------------------------------------------|------------------------------------------
-![srcImage](testdata/glass-3306662_240_160.jpg) | ![dstImage](testdata/mergi_logo_watermark_90x40.png) | ![dstImage](testdata/doc/watermark.png)
+![srcImage](testdata/mergi_bg_1.png) | ![dstImage](testdata/mergi_logo_watermark_90x40.png) | ![dstImage](testdata/doc/watermark.png)
 
 ##### `Mergi Tool`
 ```bash
 mergi \
--i testdata/glass-3306662_240_160.jpg \
--w "testdata/mergi_logo_watermark_90x40.png 20 60"
+-i testdata/mergi_bg_1.png \
+-w "testdata/mergi_logo_watermark_90x40.png 250 10"
 ```
 
 ##### `Mergi Library`
 ```go
-originalImage, _ := mergi.Import(loader.NewFileImporter("./testdata/glass-3306662_240_160.jpg"))
+originalImage, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
 watermarkImage, _ := mergi.Import(loader.NewFileImporter("./testdata/glass-mergi_logo_watermark_90x40.jpg"))
 
-res, _ := mergi.Watermark(watermarkImage, originalImage, image.Pt(20, 60))
+res, _ := mergi.Watermark(watermarkImage, originalImage, image.Pt(250, 10))
 mergi.Export(loader.NewFileExporter(res, "watermark.png"))
 ```
 
@@ -175,31 +175,31 @@ mergi.Export(loader.NewFileExporter(res, "watermark.png"))
 #### 💖 Animate
 Image 1                     | Image 2                               | Result Animation
 -----------------------------------|-------------------------------------------|------------------------------------------
-![srcImage](testdata/glass-3306662_240_160.jpg) | ![dstImage](testdata/glass-3306625_240_160.jpg) | ![dstImage](testdata/doc/sprite.gif)
-![srcImage](testdata/glass-3306662_240_160.jpg) | ![dstImage](testdata/glass-3306625_240_160.jpg) | ![dstImage](testdata/doc/smooth.gif)
+![srcImage](testdata/mergi_bg_1.png) | ![dstImage](testdata/mergi_bg_2.png) | ![dstImage](testdata/doc/sprite.gif)
+![srcImage](testdata/mergi_bg_1.png) | ![dstImage](testdata/mergi_bg_2.png) | ![dstImage](testdata/doc/smooth.gif)
 
 ##### `Mergi Tool`
 ###### Sprite Animation 
 ```bash
 mergi \
 -t "TT" \
--i testdata/glass-3306625_240_160.jpg \
--i testdata/glass-3306662_240_160.jpg \
+-i testdata/mergi_bg_1.png \
+-i testdata/mergi_bg_2.png \
 -a "sprite 50"
 ```
 ###### Smooth Animation
 ```bash
 mergi \
 -t "TT" \
--i testdata/glass-3306625_240_160.jpg \
--i testdata/glass-3306662_240_160.jpg \
+-i testdata/mergi_bg_1.png \
+-i testdata/mergi_bg_2.png \
 -a "smooth 5"
 ```
 
 ##### `Mergi Library`
 ```go
-image1, _ := mergi.Import(loader.NewFileImporter("./testdata/glass-3306625_240_160.jpg"))
-image2, _ := mergi.Import(loader.NewFileImporter("./testdata/glass-3306662_240_160.jpg"))
+image1, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
+image2, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_2.png"))
 
 gif, _ := mergi.Animate([]image.Image{image1, image2}, 50)
 mergi.Export(loader.NewAnimationExporter(gif, "out.gif"))
@@ -245,8 +245,11 @@ for _, from := range easingPoints {
     images = append(images, img)
 }
 
+// animate images as gif
+fps := 2
+gif, _ := mergi.Animate(images, fps)
+
 // export gif as a file
-gif, _ := mergi.Animate(images, 2)
 mergi.Export(loader.NewAnimationExporter(gif, "examples/easing/res/ease.gif"))
 ```
 
