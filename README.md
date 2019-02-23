@@ -215,9 +215,40 @@ mergi.Export(loader.NewAnimationExporter(gif, "out.gif"))
 ![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InElastic.gif)<br/><center>InElastic</center> | ![dstImage](testdata/doc/ease/InOutExpo.gif)<center>InOutExpo</center> | ![dstImage](testdata/doc/ease/Linear.gif)<br/><center>Linear</center>
 ![dstImage](testdata/doc/ease/InOutBounce.gif)<br/><center>InOutBounce</center> | ![dstImage](testdata/doc/ease/InCirc.gif)<br/><center>InCirc</center> | ![dstImage](testdata/doc/ease/InOutCubic.gif)<center>InOutCubic</center> | ![dstImage](testdata/doc/ease/InOutQuart.gif)<br/><center>InOutQuart</center>
 ![dstImage](testdata/doc/ease/InOutBack.gif)<br/><center>InOutBack</center> | ![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InOutCirc.gif)<center>InOutCirc</center> | ![dstImage](testdata/doc/ease/InOutSine.gif)<center>InOutSine</center>
-![dstImage](testdata/doc/ease/InExpo.gif)<br/><center>InExpo</center> | ![dstImage](testdata/doc/ease/OutBounce.gif)<br/><center>OutBounce</center> | ![dstImage](testdata/doc/ease/InQuint.gif)<center>InQuint</center>
+![dstImage](testdata/doc/ease/InExpo.gif)<br/><center>InExpo</center> | ![dstImage](testdata/doc/ease/OutBounce.gif)<br/><center>OutBounce</center> | ![dstImage](testdata/doc/ease/InQuint.gif)<br/><center>InQuint</center>
 
+##### `Mergi Library`
+```go
+mergiLogo, _ := mergi.Import(loader.NewFileImporter("testdata/mergi_logo_watermark.png"))
 
+// scale down
+mergiLogoSmall, _ := mergi.Resize(mergiLogo, uint(mergiLogo.Bounds().Max.X/2), uint(mergiLogo.Bounds().Max.Y/2))
+
+// animation image frames
+images := make([]image.Image, 0)
+
+// animation starts from
+from := image.Pt(0, 0)
+
+// animation ends to
+to := image.Pt(mergiLogoSmall.Bounds().Max.X, mergiLogoSmall.Bounds().Max.Y)
+
+// easing speed
+easeSpeed := 3.5
+
+// ease pkg contains many tested animations such as: InBack, InOutQuad, InSine etc..
+easingPoints := ease.AnimatePoints(ease.InBounce, from, to, easeSpeed)
+
+// make animation frames with crop operation
+for _, from := range easingPoints {
+    img, _ := mergi.Crop(mergiLogoSmall, from, to)
+    images = append(images, img)
+}
+
+// export gif as a file
+gif, _ := mergi.Animate(images, 2)
+mergi.Export(loader.NewAnimationExporter(gif, "examples/easing/res/ease.gif"))
+```
 
 
 
