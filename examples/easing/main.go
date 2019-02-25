@@ -2,27 +2,27 @@ package main
 
 import (
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/mergi/loader"
+	"github.com/noelyahan/mergi/io"
 	"image"
 	"github.com/noelyahan/mergi/ease"
 )
 
 func main() {
-	mergiLogo, _ := mergi.Import(loader.NewFileImporter("testdata/mergi_logo_watermark.png"))
-	//coffee, _ := mergi.Import(loader.NewFileImporter("testdata/coffee-171653_960_720.jpg"))
+	mergiLogo, _ := mergi.Import(io.NewFileImporter("testdata/mergi_logo_watermark.png"))
+	coffee, _ := mergi.Import(io.NewFileImporter("testdata/coffee-171653_960_720.jpg"))
 
 	// scale down
 	mergiLogoSmall, _ := mergi.Resize(mergiLogo, uint(mergiLogo.Bounds().Max.X/2), uint(mergiLogo.Bounds().Max.Y/2))
 
-	//cropAnimation(mergiLogoSmall, ease.InBounce)
-	//watermarkAnimation(coffee, mergiLogoSmall, ease.OutBounce)
+	cropAnimation(mergiLogoSmall, ease.InBounce)
+	watermarkAnimation(coffee, mergiLogoSmall, ease.OutBounce)
 	cropMergeAnimation(mergiLogoSmall, mergiLogoSmall, ease.InBounce, ease.InElastic)
 }
 
 func cropAnimation(cherry image.Image, move ease.Animation) {
 	images := make([]image.Image, 0)
 
-	arr := ease.AnimatePoints(move, image.Pt(0, 0), image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y*4), 3.5)
+	arr := ease.AnimatePoints(move, image.Pt(0, 0), image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y), 3.5)
 	// animate with crop operation
 	for _, v := range arr {
 		img, _ := mergi.Crop(cherry, v, image.Pt(cherry.Bounds().Max.X, cherry.Bounds().Max.Y))
@@ -30,7 +30,7 @@ func cropAnimation(cherry image.Image, move ease.Animation) {
 	}
 
 	gif, _ := mergi.Animate(images, 2)
-	mergi.Export(loader.NewAnimationExporter(gif, "examples/easing/res/crop_ease.gif"))
+	mergi.Export(io.NewAnimationExporter(gif, "examples/easing/res/crop_ease.gif"))
 }
 
 func watermarkAnimation(coffee, cherry image.Image, move ease.Animation) {
@@ -43,7 +43,7 @@ func watermarkAnimation(coffee, cherry image.Image, move ease.Animation) {
 	}
 
 	gif, _ := mergi.Animate(images, 2)
-	mergi.Export(loader.NewAnimationExporter(gif, "examples/easing/res/watermark_ease.gif"))
+	mergi.Export(io.NewAnimationExporter(gif, "examples/easing/res/watermark_ease.gif"))
 }
 
 func cropMergeAnimation(coffee, cherry image.Image, move1, move2 ease.Animation) {
@@ -71,5 +71,5 @@ func cropMergeAnimation(coffee, cherry image.Image, move1, move2 ease.Animation)
 	}
 
 	gif, _ := mergi.Animate(images, 2)
-	mergi.Export(loader.NewAnimationExporter(gif, "examples/easing/res/crop_merge_ease.gif"))
+	mergi.Export(io.NewAnimationExporter(gif, "examples/easing/res/crop_merge_ease.gif"))
 }

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/mergi/loader"
+	"github.com/noelyahan/mergi/io"
 	"image"
 	"net/url"
 	"strconv"
@@ -56,9 +56,9 @@ func getWatermarkImageXY(wmStr string) (image.Image, int, int) {
 		var img image.Image
 		var err error
 		if isValidURL(wmImgXY[0]) {
-			img, err = mergi.Import(loader.NewURLImporter(wmImgXY[0]))
+			img, err = mergi.Import(io.NewURLImporter(wmImgXY[0]))
 		} else {
-			img, err = mergi.Import(loader.NewFileImporter(wmImgXY[0]))
+			img, err = mergi.Import(io.NewFileImporter(wmImgXY[0]))
 		}
 
 		if err != nil {
@@ -76,9 +76,9 @@ func getWatermarkImageXY(wmStr string) (image.Image, int, int) {
 	var img image.Image
 	var err error
 	if isValidURL(wmImgXY[0]) {
-		img, err = mergi.Import(loader.NewURLImporter(wmImgXY[0]))
+		img, err = mergi.Import(io.NewURLImporter(wmImgXY[0]))
 	} else {
-		img, err = mergi.Import(loader.NewFileImporter(wmImgXY[0]))
+		img, err = mergi.Import(io.NewFileImporter(wmImgXY[0]))
 	}
 
 	if err != nil {

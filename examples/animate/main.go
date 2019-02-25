@@ -2,27 +2,27 @@ package main
 
 import (
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/mergi/loader"
 	"image"
 	"image/gif"
 	"log"
+	"github.com/noelyahan/mergi/io"
 )
 
 // This example will guide how to animate any given images using mergi.Animate API
 // mergi.Animate only needs frames of go lang images and some delay to sleep
 func main() {
 	gifAnim := smoothMoveWithCrop()
-	mergi.Export(loader.NewAnimationExporter(gifAnim, "examples/animate/res/smooth.gif"))
+	mergi.Export(io.NewAnimationExporter(gifAnim, "examples/animate/res/smooth.gif"))
 
 	gifAnim = simpleSlideChange()
-	mergi.Export(loader.NewAnimationExporter(gifAnim, "examples/animate/res/slide.gif"))
+	mergi.Export(io.NewAnimationExporter(gifAnim, "examples/animate/res/slide.gif"))
 
 	gifAnim = catFighterSpriteSheet()
-	mergi.Export(loader.NewAnimationExporter(gifAnim, "examples/animate/res/sprite.gif"))
+	mergi.Export(io.NewAnimationExporter(gifAnim, "examples/animate/res/sprite.gif"))
 }
 
 func catFighterSpriteSheet() gif.GIF {
-	img, err := mergi.Import(loader.NewFileImporter("testdata/cat_fighter_sprite1.png"))
+	img, err := mergi.Import(io.NewFileImporter("testdata/cat_fighter_sprite1.png"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -48,9 +48,9 @@ func catFighterSpriteSheet() gif.GIF {
 }
 
 func simpleSlideChange() gif.GIF {
-	cherry, _ := mergi.Import(loader.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
-	grapes, _ := mergi.Import(loader.NewFileImporter("testdata/grapes-2032838_960_720.jpg"))
-	smoothie, _ := mergi.Import(loader.NewFileImporter("testdata/smoothie-3193660_960_720.jpg"))
+	cherry, _ := mergi.Import(io.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
+	grapes, _ := mergi.Import(io.NewFileImporter("testdata/grapes-2032838_960_720.jpg"))
+	smoothie, _ := mergi.Import(io.NewFileImporter("testdata/smoothie-3193660_960_720.jpg"))
 	w := uint(240)
 	h := uint(180)
 	cherryR, _ := mergi.Resize(cherry, w, h)
@@ -66,9 +66,9 @@ func simpleSlideChange() gif.GIF {
 }
 
 func smoothMoveWithCrop() gif.GIF {
-	cherry, _ := mergi.Import(loader.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
-	grapes, _ := mergi.Import(loader.NewFileImporter("testdata/grapes-2032838_960_720.jpg"))
-	smoothie, _ := mergi.Import(loader.NewFileImporter("testdata/smoothie-3193660_960_720.jpg"))
+	cherry, _ := mergi.Import(io.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
+	grapes, _ := mergi.Import(io.NewFileImporter("testdata/grapes-2032838_960_720.jpg"))
+	smoothie, _ := mergi.Import(io.NewFileImporter("testdata/smoothie-3193660_960_720.jpg"))
 	w := uint(240)
 	h := uint(180)
 	cherryR, _ := mergi.Resize(cherry, w, h)
