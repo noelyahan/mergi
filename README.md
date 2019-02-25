@@ -94,14 +94,14 @@ mergi \
 ```
 ##### `Mergi Library`
 ```go
-image1, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
-image2, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_2.png"))
+image1, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
+image2, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_2.png"))
 
 horizontalImage, _ := mergi.Merge("TT", []image.Image{image1, image2})
-mergi.Export(loader.NewFileExporter(horizontalImage, "horizontal.png"))
+mergi.Export(io.NewFileExporter(horizontalImage, "horizontal.png"))
 
 verticalImage, _ := mergi.Merge("TB", []image.Image{image1, image2})
-mergi.Export(loader.NewFileExporter(verticalImage, "vertical.png"))
+mergi.Export(io.NewFileExporter(verticalImage, "vertical.png"))
 ```
 
 
@@ -121,9 +121,9 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-img, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
+img, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
 res, _ := mergi.Crop(img, image.Pt(10, 40), image.Pt(200, 110))
-mergi.Export(loader.NewFileExporter(res, "crop.png"))
+mergi.Export(io.NewFileExporter(res, "crop.png"))
 ```
 
 <br />
@@ -142,9 +142,9 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-img, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
+img, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
 res, _ := mergi.Resize(img, uint(180), uint(80))
-mergi.Export(loader.NewFileExporter(res, "resize.png"))
+mergi.Export(io.NewFileExporter(res, "resize.png"))
 ```
 
 <br />
@@ -163,11 +163,11 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-originalImage, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
-watermarkImage, _ := mergi.Import(loader.NewFileImporter("./testdata/glass-mergi_logo_watermark_90x40.jpg"))
+originalImage, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
+watermarkImage, _ := mergi.Import(io.NewFileImporter("./testdata/glass-mergi_logo_watermark_90x40.jpg"))
 
 res, _ := mergi.Watermark(watermarkImage, originalImage, image.Pt(250, 10))
-mergi.Export(loader.NewFileExporter(res, "watermark.png"))
+mergi.Export(io.NewFileExporter(res, "watermark.png"))
 ```
 
 <br />
@@ -198,11 +198,11 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-image1, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_1.png"))
-image2, _ := mergi.Import(loader.NewFileImporter("./testdata/mergi_bg_2.png"))
+image1, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
+image2, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_2.png"))
 
 gif, _ := mergi.Animate([]image.Image{image1, image2}, 50)
-mergi.Export(loader.NewAnimationExporter(gif, "out.gif"))
+mergi.Export(io.NewAnimationExporter(gif, "out.gif"))
 ```
 
 <br />
@@ -219,7 +219,7 @@ mergi.Export(loader.NewAnimationExporter(gif, "out.gif"))
 
 ##### `Mergi Library`
 ```go
-mergiLogo, _ := mergi.Import(loader.NewFileImporter("testdata/mergi_logo_watermark.png"))
+mergiLogo, _ := mergi.Import(io.NewFileImporter("testdata/mergi_logo_watermark.png"))
 
 // scale down
 mergiLogoSmall, _ := mergi.Resize(mergiLogo, uint(mergiLogo.Bounds().Max.X/2), uint(mergiLogo.Bounds().Max.Y/2))
@@ -250,7 +250,7 @@ fps := 2
 gif, _ := mergi.Animate(images, fps)
 
 // export gif as a file
-mergi.Export(loader.NewAnimationExporter(gif, "examples/easing/res/ease.gif"))
+mergi.Export(io.NewAnimationExporter(gif, "examples/easing/res/ease.gif"))
 ```
 
 
