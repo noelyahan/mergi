@@ -1,4 +1,4 @@
-package loader
+package io
 
 import (
 	"testing"
@@ -15,7 +15,7 @@ func TestB64_Import(t *testing.T) {
 }
 
 func TestNewBase64Exporter(t *testing.T) {
-	img, _ := mergi.Import(NewFileImporter("../testdata/avocado-3210885_960_720.jpg"))
+	img, _ := mergi.Import(NewFileImporter("../testdata/cherry-3074284_960_720.jpg"))
 	img, _ = mergi.Resize(img, uint(250), uint(250))
 
 	xp := NewBase64Exporter("jpg", img, func(data string) {
