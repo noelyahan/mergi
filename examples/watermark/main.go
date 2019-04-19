@@ -21,6 +21,8 @@ func main() {
 
 	watermarkTopLeft(watermarkImage, img)
 
+	watermarkTopLeftWithOpacity(watermarkImage, img)
+
 	watermarkResizeTopRightWith(watermarkImage, img)
 
 	watermarkEverywhere(watermarkImage, img)
@@ -36,7 +38,18 @@ func watermarkTopLeft(watermarkImage, img image.Image) {
 		log.Fatal(err)
 	}
 	mergi.Export(io.NewFileExporter(res, getPath("watermark_1.png")))
+}
 
+func watermarkTopLeftWithOpacity(watermarkImage, img image.Image) {
+	opecWatermark, err := mergi.Opacity(watermarkImage, 0.5)
+	if err != nil {
+		log.Fatal(err)
+	}
+	res, err := mergi.Watermark(opecWatermark, img, image.Pt(0, 0))
+	if err != nil {
+		log.Fatal(err)
+	}
+	mergi.Export(io.NewFileExporter(res, getPath("watermark_1_opacity.png")))
 }
 
 func watermarkResizeTopRightWith(watermarkImage, img image.Image) {

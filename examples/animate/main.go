@@ -19,6 +19,30 @@ func main() {
 
 	gifAnim = catFighterSpriteSheet()
 	mergi.Export(io.NewAnimationExporter(gifAnim, "examples/animate/res/sprite.gif"))
+
+	gifAnim = opecAnimation()
+	mergi.Export(io.NewAnimationExporter(gifAnim, "examples/animate/res/opec.gif"))
+}
+
+func opecAnimation() gif.GIF {
+	img, _ := mergi.Import(io.NewFileImporter("testdata/nature-3042751_960_720.jpg"))
+	img, _ = mergi.Resize(img, uint(img.Bounds().Max.X / 4), uint(img.Bounds().Max.Y / 4))
+	imgs := make([]image.Image, 0)
+	fps := 0.05
+	for i := 0.0; i < 1; i += fps {
+		res, _ := mergi.Opacity(img, i)
+		imgs = append(imgs, res)
+	}
+
+	for i := 1.0; i > 0; i -= fps {
+		res, _ := mergi.Opacity(img, i)
+		imgs = append(imgs, res)
+	}
+	anim, err := mergi.Animate(imgs, 5)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return anim
 }
 
 func catFighterSpriteSheet() gif.GIF {
