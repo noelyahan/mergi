@@ -6,6 +6,7 @@ import (
 	"image"
 	"log"
 	"testing"
+	"strings"
 )
 
 func TestWatermarkLogo(t *testing.T) {
@@ -32,10 +33,35 @@ func TestWatermarkLogo(t *testing.T) {
 }
 
 func TestWatermarkWithNil(t *testing.T) {
-	img, _ := mergi.Import(io.NewFileImporter("./testdata/coffee-206142_960_720.jpg"))
+	img, _ := mergi.Import(io.NewFileImporter("./testdata/coffee-1291656_960_720.jpg"))
 	res, err := mergi.Watermark(nil, img, image.Pt(0, 0))
 	if err == nil {
 		t.Errorf("Expect error got [%v]", err)
 	}
 	mergi.Export(io.NewFileExporter(res, "out.png"))
+}
+
+
+// https://stackoverflow.com/questions/12484403/setting-opacity-of-image-in-golang
+func TestOpacity(t *testing.T) {
+	bg, _ := mergi.Import(io.NewFileImporter("./testdata/lion-3576045_960_720.jpg"))
+	wm, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_logo_watermark.png"))
+	max := wm.Bounds().Max
+	wm, err := mergi.Resize(wm, uint(max.X/2), uint(max.Y/2))
+	if err != nil {
+		log.Fatalf("failed to resize: %s", err)
+	}
+
+	wmAlpha, _ := mergi.Opacity(wm, 0.3)
+
+	wmarks := make([]image.Image, 0)
+	tmplate := "TBBBBBBBTBBBBBBBTBBBBBBBTBBBBBBBTBBBBBBBTBBBBBBB"
+	for _ = range strings.Split(tmplate, "") {
+		wmarks = append(wmarks, wmAlpha)
+	}
+	wmAlpha, _ = mergi.Merge(tmplate, wmarks)
+	res, err := mergi.Watermark(wmAlpha, bg, image.ZP)
+
+	mergi.Export(io.NewFileExporter(res, "out.png"))
+
 }
