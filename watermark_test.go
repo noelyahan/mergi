@@ -7,6 +7,7 @@ import (
 	"log"
 	"testing"
 	"strings"
+	"image/color"
 )
 
 func TestWatermarkLogo(t *testing.T) {
@@ -64,4 +65,32 @@ func TestOpacity(t *testing.T) {
 
 	mergi.Export(io.NewFileExporter(res, "out.png"))
 
+}
+
+func get2Images() (img1 image.Image, img2 image.Image) {
+	scale := 4
+	img1, _ = mergi.Import(io.NewFileImporter("./testdata/nature-3042751_960_720.jpg"))
+	img1, _ = mergi.Resize(img1, uint(img1.Bounds().Max.X/scale), uint(img1.Bounds().Max.Y/scale))
+
+	img2, _ = mergi.Import(io.NewFileImporter("./testdata/soldier-708711_960_720.jpg"))
+	img2, _ = mergi.Resize(img2, uint(img2.Bounds().Max.X/scale), uint(img2.Bounds().Max.Y/scale))
+
+	img1, _ = mergi.Crop(img1, image.ZP, image.Pt(img2.Bounds().Max.X, img2.Bounds().Max.Y))
+	return
+}
+
+func TestMaskAdvanced(t *testing.T) {
+	img, _ := mergi.Import(io.NewFileImporter("./testdata/black_circle.jpg"))
+	img, _ = mergi.Resize(img, uint(img.Bounds().Max.X/3), uint(img.Bounds().Max.Y/3))
+	img, _ = mergi.Merge("TBBTBBTBBTBBTBB", []image.Image{
+		img, img, img,
+		img, img, img,
+		img, img, img,
+		img, img, img,
+		img, img, img,
+		})
+	img1, img2 := get2Images()
+	msk, _ := mergi.Mask(img, img1, color.RGBA{0, 0, 0, 0})
+	res, _ := mergi.Watermark(msk, img2, image.ZP)
+	mergi.Export(io.NewFileExporter(res, "out.png"))
 }
