@@ -9,7 +9,7 @@ import (
 // TODO issue: OutCirc
 // TODO issue: OutElastic
 
-type Animation func(t float64) float64
+type EaseType func(t float64) float64
 
 
 // this contains easing animations algorithms
