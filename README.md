@@ -26,6 +26,7 @@ Image manipulation [<b>go library</b>](http://godoc.org/github.com/noelyahan/mer
 - 🖃 Watermark
 - 💖 Animate
 - 🔥 Easing
+- 🦎 Transition
 
 <br />
 
@@ -258,6 +259,15 @@ mergi.Export(io.NewAnimationExporter(gif, "examples/easing/res/ease.gif"))
 
 <br />
 
+#### 🦎 Transition
+
+[]()                   | []() | []() | []()
+-----------------------|----------------------|----------------------|----------------------
+![dstImage](./testdata/doc/trans/SlideBar.gif)<br/><center>SlideBar</center> | ![dstImage](./testdata/doc/trans/Ink1.gif)<br/><center>Ink1</center> | ![dstImage](./testdata/doc/trans/Ink2.gif)<br/><center>Ink2</center> | ![dstImage](./testdata/doc/trans/Ink3.gif)<br/><center>Ink3</center>
+![dstImage](./testdata/doc/trans/ScaleUpFastRect.gif)<br/><center>ScaleUpFastRect</center> | ![dstImage](./testdata/doc/trans/ScaleDownFastRect.gif)<br/><center>ScaleDownFastRect</center> | ![dstImage](./testdata/doc/trans/ScaleUpFastCircle.gif)<center>ScaleUpFastCircle</center> | ![dstImage](./testdata/doc/trans/ScaleDownFastCircle.gif)<br/><center>ScaleDownFastCircle</center>
+
+
+
 Learn more [examples](examples)
 
 ## 💻 Contribute
@@ -282,6 +292,7 @@ $ go get github.com/noelyahan/mergi
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <br/>
+
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification.
 Contributions of any kind are welcome!
 
