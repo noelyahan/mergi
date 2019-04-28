@@ -237,7 +237,7 @@ speed := 4
 // Ease from 0 to width of background
 for i := 0; i < to; i += speed {
   // Apply Easeing function InBounce
-  v := Ease(float64(i), float64(to), 0, InBounce)
+  v := Ease(float64(i), 0, float64(to), InBounce)
   img, _ := mergi.Watermark(square, bg, image.Pt(int(v), posY))
   frames = append(frames, img)
 }
