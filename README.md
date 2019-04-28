@@ -219,39 +219,32 @@ mergi.Export(io.NewAnimationExporter(gif, "out.gif"))
 ![dstImage](testdata/doc/ease/InExpo.gif)<br/><center>InExpo</center> | ![dstImage](testdata/doc/ease/OutBounce.gif)<br/><center>OutBounce</center> | ![dstImage](testdata/doc/ease/InQuint.gif)<br/><center>InQuint</center>
 
 ##### `Mergi Library`
+
+`Note: Ease function can be applied with any function, in this example it's applied with Watermark function`
 ```go
-mergiLogo, _ := mergi.Import(io.NewFileImporter("testdata/mergi_logo_watermark.png"))
+// Load background and the square images
+square, _ := mergi.Import(io.NewFileImporter("./testdata/square.jpg"))
+bg, _ := mergi.Import(io.NewFileImporter("./testdata/white_bg.jpg"))
 
-// scale down
-mergiLogoSmall, _ := mergi.Resize(mergiLogo, uint(mergiLogo.Bounds().Max.X/2), uint(mergiLogo.Bounds().Max.Y/2))
+// Init images frames to add applied ease frames
+frames := make([]image.Image, 0)
 
-// animation image frames
-images := make([]image.Image, 0)
+// Init the limts of the Ease
+to := bg.Bounds().Max.X - square.Bounds().Max.X
+posY := bg.Bounds().Max.Y/2 - square.Bounds().Max.Y/2
+speed := 4
 
-// animation starts from
-from := image.Pt(0, 0)
-
-// animation ends to
-to := image.Pt(mergiLogoSmall.Bounds().Max.X, mergiLogoSmall.Bounds().Max.Y)
-
-// easing speed
-easeSpeed := 3.5
-
-// ease pkg contains many tested animations such as: InBack, InOutQuad, InSine etc..
-easingPoints := ease.AnimatePoints(ease.InBounce, from, to, easeSpeed)
-
-// make animation frames with crop operation
-for _, from := range easingPoints {
-    img, _ := mergi.Crop(mergiLogoSmall, from, to)
-    images = append(images, img)
+// Ease from 0 to width of background
+for i := 0; i < to; i += speed {
+  // Apply Easeing function InBounce
+  v := Ease(float64(i), float64(to), 0, InBounce)
+  img, _ := mergi.Watermark(square, bg, image.Pt(int(v), posY))
+  frames = append(frames, img)
 }
 
-// animate images as gif
-fps := 2
-gif, _ := mergi.Animate(images, fps)
-
-// export gif as a file
-mergi.Export(io.NewAnimationExporter(gif, "examples/easing/res/ease.gif"))
+// For preview example, save as a gif
+gif, _ := mergi.Animate(frames, 1)
+mergi.Export(io.NewAnimationExporter(gif, "out.gif"))
 ```
 
 
@@ -264,7 +257,7 @@ mergi.Export(io.NewAnimationExporter(gif, "examples/easing/res/ease.gif"))
 []()                   | []() | []() | []()
 -----------------------|----------------------|----------------------|----------------------
 ![dstImage](./testdata/doc/trans/SlideBar.gif)<br/><center>SlideBar</center> | ![dstImage](./testdata/doc/trans/Ink1.gif)<br/><center>Ink1</center> | ![dstImage](./testdata/doc/trans/Ink2.gif)<br/><center>Ink2</center> | ![dstImage](./testdata/doc/trans/Ink3.gif)<br/><center>Ink3</center>
-![dstImage](./testdata/doc/trans/ScaleUpFastRect.gif)<br/><center>ScaleUpFastRect</center> | ![dstImage](./testdata/doc/trans/ScaleDownFastRect.gif)<br/><center>ScaleDownFastRect</center> | ![dstImage](./testdata/doc/trans/ScaleUpFastCircle.gif)<center>ScaleUpFastCircle</center> | ![dstImage](./testdata/doc/trans/ScaleDownFastCircle.gif)<br/><center>ScaleDownFastCircle</center>
+![dstImage](./testdata/doc/trans/ScaleUpFastRect.gif)<br/><center>ScaleUpFastRect</center> | ![dstImage](./testdata/doc/trans/ScaleDownFastRect.gif)<br/><center>ScaleDownFastRect</center> | ![dstImage](./testdata/doc/trans/ScaleUpFastCircle.gif)<br/><center>ScaleUpFastCircle</center> | ![dstImage](./testdata/doc/trans/ScaleDownFastCircle.gif)<br/><center>ScaleDownFastCircle</center>
 
 
 
