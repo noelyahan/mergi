@@ -30,7 +30,7 @@ func TestEase(t *testing.T) {
 	speed := 4
 
 	for i := 0; i < to; i += speed {
-		v := Ease(float64(i), float64(to), 0, InOutSine)
+		v := Ease(float64(i), 0, float64(to), InOutSine)
 		img, _ := mergi.Watermark(square, bg, image.Pt(int(v), posY))
 		frames = append(frames, img)
 	}
@@ -52,7 +52,7 @@ func TestEaseFont(t *testing.T) {
 	//text, _ = mergi.MaskColor(text, mergi.MaskBlack, mergi.MaskWhite)
 	to := img1.Bounds().Max.X / 3
 	for i := 0; i < to; i += 5 {
-		v := Ease(float64(i), float64(to), 0, InElastic)
+		v := Ease(float64(i), 0, float64(to), InElastic)
 		img, _ := mergi.Watermark(text, img1, image.Pt(int(v), img1.Bounds().Max.Y/2))
 		frames = append(frames, img)
 	}

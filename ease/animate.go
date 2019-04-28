@@ -11,7 +11,7 @@ func mapValues(value, istart, istop, ostart, ostop float64) float64 {
 }
 
 func Ease(value, start, end float64, ease EaseType) float64 {
-	t := mapValues(value, start, end, 0.1, 1)
+	t := mapValues(value, start, end, 0, 1)
 	v := ease(t)
 	return mapValues(v, 0, 1, start, end)
 }
