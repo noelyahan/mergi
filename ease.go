@@ -1,4 +1,4 @@
-package ease
+package mergi
 
 import (
 	"math"
@@ -9,8 +9,15 @@ import (
 // TODO issue: OutCirc
 // TODO issue: OutElastic
 
-type EaseType func(t float64) float64
+func mapValues(value, istart, istop, ostart, ostop float64) float64 {
+	return ostart + (ostop-ostart)*((value-istart)/(istop-istart))
+}
 
+func Ease(value, start, end float64, ease func(t float64) float64) float64 {
+	t := mapValues(value, end, start, 0, 1)
+	v := ease(t)
+	return mapValues(v, 0, 1, end, start)
+}
 
 // this contains easing animations algorithms
 // The visualization of theses algorithms can be found on > http://easings.net/
