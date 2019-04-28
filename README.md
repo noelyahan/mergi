@@ -212,10 +212,10 @@ mergi.Export(io.NewAnimationExporter(gif, "out.gif"))
 
 []()                   | []() | []() | []()
 -----------------------|----------------------|----------------------|----------------------
-![dstImage](testdata/doc/ease/InBounce.gif)<br/><center>InBounce</center> | ![dstImage](testdata/doc/ease/InBack.gif)<br/><center>InBack</center> | ![dstImage](testdata/doc/ease/InOutQuad.gif)<center>InOutQuad</center> | ![dstImage](testdata/doc/ease/InSine.gif)<br/><center>InSine</center>
-![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InElastic.gif)<br/><center>InElastic</center> | ![dstImage](testdata/doc/ease/InOutExpo.gif)<center>InOutExpo</center> | ![dstImage](testdata/doc/ease/Linear.gif)<br/><center>Linear</center>
-![dstImage](testdata/doc/ease/InOutBounce.gif)<br/><center>InOutBounce</center> | ![dstImage](testdata/doc/ease/InCirc.gif)<br/><center>InCirc</center> | ![dstImage](testdata/doc/ease/InOutCubic.gif)<center>InOutCubic</center> | ![dstImage](testdata/doc/ease/InOutQuart.gif)<br/><center>InOutQuart</center>
-![dstImage](testdata/doc/ease/InOutBack.gif)<br/><center>InOutBack</center> | ![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InOutCirc.gif)<center>InOutCirc</center> | ![dstImage](testdata/doc/ease/InOutSine.gif)<center>InOutSine</center>
+![dstImage](testdata/doc/ease/InBounce.gif)<br/><center>InBounce</center> | ![dstImage](testdata/doc/ease/InBack.gif)<br/><center>InBack</center> | ![dstImage](testdata/doc/ease/InOutQuad.gif)<br/><center>InOutQuad</center> | ![dstImage](testdata/doc/ease/InSine.gif)<br/><center>InSine</center>
+![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InElastic.gif)<br/><center>InElastic</center> | ![dstImage](testdata/doc/ease/InOutExpo.gif)<br/><center>InOutExpo</center> | ![dstImage](testdata/doc/ease/Linear.gif)<br/><center>Linear</center>
+![dstImage](testdata/doc/ease/InOutBounce.gif)<br/><center>InOutBounce</center> | ![dstImage](testdata/doc/ease/InCirc.gif)<br/><center>InCirc</center> | ![dstImage](testdata/doc/ease/InOutCubic.gif)<br/><center>InOutCubic</center> | ![dstImage](testdata/doc/ease/InOutQuart.gif)<br/><center>InOutQuart</center>
+![dstImage](testdata/doc/ease/InOutBack.gif)<br/><center>InOutBack</center> | ![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InOutCirc.gif)<br/><center>InOutCirc</center> | ![dstImage](testdata/doc/ease/InOutSine.gif)<center>InOutSine</center>
 ![dstImage](testdata/doc/ease/InExpo.gif)<br/><center>InExpo</center> | ![dstImage](testdata/doc/ease/OutBounce.gif)<br/><center>OutBounce</center> | ![dstImage](testdata/doc/ease/InQuint.gif)<br/><center>InQuint</center>
 
 ##### `Mergi Library`
