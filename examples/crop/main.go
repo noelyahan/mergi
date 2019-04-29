@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/mergi/io"
+	"github.com/noelyahan/eximp"
 	"image"
 	"log"
 )
@@ -11,11 +11,11 @@ import (
 // This example will guide how to crop a image using mergi.Crop API
 func main() {
 	// Let's open up friends_group image
-	tigerLarge, err := mergi.Import(io.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
+	tigerLarge, err := mergi.Import(eximp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	rabbitLarge, err := mergi.Import(io.NewFileImporter("testdata/rabbit-1882699_960_720.jpg"))
+	rabbitLarge, err := mergi.Import(eximp.NewFileImporter("testdata/rabbit-1882699_960_720.jpg"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -29,7 +29,7 @@ func main() {
 	}
 
 	// lets save tiger
-	mergi.Export(io.NewFileExporter(tiger, "examples/crop/res/tiger.png"))
+	mergi.Export(eximp.NewFileExporter(tiger, "examples/crop/res/tiger.png"))
 
 	rabbitSize := image.Pt(350, 600)
 
@@ -40,7 +40,7 @@ func main() {
 	}
 
 	// lets save rabbit too
-	mergi.Export(io.NewFileExporter(rabbit, "examples/crop/res/rabbit.png"))
+	mergi.Export(eximp.NewFileExporter(rabbit, "examples/crop/res/rabbit.png"))
 
 	// Let's see how we can merge tiger and rabbit together :) in merge example
 }

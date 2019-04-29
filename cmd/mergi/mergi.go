@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/mergi/io"
+	"github.com/noelyahan/eximp"
 	"image"
 	"image/gif"
 	"os"
@@ -71,9 +71,9 @@ func getImagesFromPaths(paths []string) ([]image.Image, error) {
 	var err error
 	for _, p := range paths {
 		if isValidURL(p) {
-			img, err = mergi.Import(io.NewURLImporter(p))
+			img, err = mergi.Import(eximp.NewURLImporter(p))
 		} else {
-			img, err = mergi.Import(io.NewFileImporter(p))
+			img, err = mergi.Import(eximp.NewFileImporter(p))
 		}
 
 		if err != nil {

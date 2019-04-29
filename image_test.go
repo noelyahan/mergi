@@ -2,7 +2,7 @@ package mergi_test
 
 import (
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/mergi/io"
+	"github.com/noelyahan/eximp"
 	"github.com/pkg/errors"
 	"testing"
 )
@@ -19,7 +19,7 @@ func TestNewWithFiles(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		_, err := mergi.Import(io.NewFileImporter(test.in))
+		_, err := mergi.Import(eximp.NewFileImporter(test.in))
 		if test.out == nil {
 			if err != test.out {
 				t.Errorf("Want [%v] got [%v]", test.out, err)
@@ -40,12 +40,12 @@ func TestWithURLs(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		img, err := mergi.Import(io.NewFileImporter(test.in))
+		img, err := mergi.Import(eximp.NewFileImporter(test.in))
 
 		if err == nil {
 			t.Error("Error", err)
 		} else {
-			mergi.Export(io.NewFileExporter(img, "out.png"))
+			mergi.Export(eximp.NewFileExporter(img, "out.png"))
 		}
 
 		//if test.out == nil {
@@ -57,13 +57,13 @@ func TestWithURLs(t *testing.T) {
 }
 
 func TestSaveFiles(t *testing.T) {
-	file, _ := mergi.Import(io.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
-	err := mergi.Export(io.NewFileExporter(file, "out.png"))
+	file, _ := mergi.Import(eximp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
+	err := mergi.Export(eximp.NewFileExporter(file, "out.png"))
 	if err != nil {
 		t.Errorf("Want [%v] got [%v]", nil, err)
 	}
 
-	err = mergi.Export(io.NewFileExporter(nil, "out.png"))
+	err = mergi.Export(eximp.NewFileExporter(nil, "out.png"))
 	if err == nil {
 		t.Errorf("Want [%v] got [%v]", nil, err)
 	}
