@@ -5,27 +5,27 @@ import (
 	"image"
 	"image/gif"
 	"log"
-	"github.com/noelyahan/mergi/io"
+	"github.com/noelyahan/eximp"
 )
 
 // This example will guide how to animate any given images using mergi.Animate API
 // mergi.Animate only needs frames of go lang images and some delay to sleep
 func main() {
 	gifAnim := smoothMoveWithCrop()
-	mergi.Export(io.NewAnimationExporter(gifAnim, "examples/animate/res/smooth.gif"))
+	mergi.Export(eximp.NewAnimationExporter(gifAnim, "examples/animate/res/smooth.gif"))
 
 	gifAnim = simpleSlideChange()
-	mergi.Export(io.NewAnimationExporter(gifAnim, "examples/animate/res/slide.gif"))
+	mergi.Export(eximp.NewAnimationExporter(gifAnim, "examples/animate/res/slide.gif"))
 
 	gifAnim = catFighterSpriteSheet()
-	mergi.Export(io.NewAnimationExporter(gifAnim, "examples/animate/res/sprite.gif"))
+	mergi.Export(eximp.NewAnimationExporter(gifAnim, "examples/animate/res/sprite.gif"))
 
 	gifAnim = opecAnimation()
-	mergi.Export(io.NewAnimationExporter(gifAnim, "examples/animate/res/opec.gif"))
+	mergi.Export(eximp.NewAnimationExporter(gifAnim, "examples/animate/res/opec.gif"))
 }
 
 func opecAnimation() gif.GIF {
-	img, _ := mergi.Import(io.NewFileImporter("testdata/nature-3042751_960_720.jpg"))
+	img, _ := mergi.Import(eximp.NewFileImporter("testdata/nature-3042751_960_720.jpg"))
 	img, _ = mergi.Resize(img, uint(img.Bounds().Max.X / 4), uint(img.Bounds().Max.Y / 4))
 	imgs := make([]image.Image, 0)
 	fps := 0.05
@@ -46,7 +46,7 @@ func opecAnimation() gif.GIF {
 }
 
 func catFighterSpriteSheet() gif.GIF {
-	img, err := mergi.Import(io.NewFileImporter("testdata/cat_fighter_sprite1.png"))
+	img, err := mergi.Import(eximp.NewFileImporter("testdata/cat_fighter_sprite1.png"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -72,9 +72,9 @@ func catFighterSpriteSheet() gif.GIF {
 }
 
 func simpleSlideChange() gif.GIF {
-	cherry, _ := mergi.Import(io.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
-	grapes, _ := mergi.Import(io.NewFileImporter("testdata/grapes-2032838_960_720.jpg"))
-	smoothie, _ := mergi.Import(io.NewFileImporter("testdata/smoothie-3193660_960_720.jpg"))
+	cherry, _ := mergi.Import(eximp.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
+	grapes, _ := mergi.Import(eximp.NewFileImporter("testdata/grapes-2032838_960_720.jpg"))
+	smoothie, _ := mergi.Import(eximp.NewFileImporter("testdata/smoothie-3193660_960_720.jpg"))
 	w := uint(240)
 	h := uint(180)
 	cherryR, _ := mergi.Resize(cherry, w, h)
@@ -90,9 +90,9 @@ func simpleSlideChange() gif.GIF {
 }
 
 func smoothMoveWithCrop() gif.GIF {
-	cherry, _ := mergi.Import(io.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
-	grapes, _ := mergi.Import(io.NewFileImporter("testdata/grapes-2032838_960_720.jpg"))
-	smoothie, _ := mergi.Import(io.NewFileImporter("testdata/smoothie-3193660_960_720.jpg"))
+	cherry, _ := mergi.Import(eximp.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
+	grapes, _ := mergi.Import(eximp.NewFileImporter("testdata/grapes-2032838_960_720.jpg"))
+	smoothie, _ := mergi.Import(eximp.NewFileImporter("testdata/smoothie-3193660_960_720.jpg"))
 	w := uint(240)
 	h := uint(180)
 	cherryR, _ := mergi.Resize(cherry, w, h)

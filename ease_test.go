@@ -3,14 +3,14 @@ package mergi_test
 import (
 	"testing"
 	"image"
-	"github.com/noelyahan/mergi/io"
+	"github.com/noelyahan/eximp"
 	"github.com/noelyahan/mergi"
 )
 
 func TestEase(t *testing.T) {
 	// Load background and the square images
-	square, _ := mergi.Import(io.NewFileImporter("./testdata/square.jpg"))
-	bg, _ := mergi.Import(io.NewFileImporter("./testdata/white_bg.jpg"))
+	square, _ := mergi.Import(eximp.NewFileImporter("./testdata/square.jpg"))
+	bg, _ := mergi.Import(eximp.NewFileImporter("./testdata/white_bg.jpg"))
 
 	// Init images frames to add applied ease frames
 	frames := make([]image.Image, 0)
@@ -23,12 +23,12 @@ func TestEase(t *testing.T) {
 	// Ease from 0 to width of background
 	for i := 0; i < to; i += speed {
 		// Apply Easeing function InBounce
-		v := mergi.Ease(float64(i), 0, float64(to), mergi.InBounce)
-		img, _ := mergi.Watermark(square, bg, image.Pt(int(v), posY))
+		posX := mergi.Ease(float64(i), 0, float64(to), mergi.InBounce)
+		img, _ := mergi.Watermark(square, bg, image.Pt(int(posX), posY))
 		frames = append(frames, img)
 	}
 
 	// For preview example, save as a gif
 	gif, _ := mergi.Animate(frames, 1)
-	mergi.Export(io.NewAnimationExporter(gif, "out.gif"))
+	mergi.Export(eximp.NewAnimationExporter(gif, "out.gif"))
 }

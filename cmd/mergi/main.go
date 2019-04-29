@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/mergi/io"
+	"github.com/noelyahan/eximp"
 	"image"
 	"image/gif"
 	"os"
@@ -87,9 +87,9 @@ func main() {
 	res := processFlaggedJobs(imgs, *template, *animation, jobs, cFlags, rFlags, wFlags)
 
 	if res.image != nil {
-		mergi.Export(io.NewFileExporter(res.image, *out))
+		mergi.Export(eximp.NewFileExporter(res.image, *out))
 	} else {
-		mergi.Export(io.NewAnimationExporter(res.animation, *out))
+		mergi.Export(eximp.NewAnimationExporter(res.animation, *out))
 	}
 
 	msg := fmt.Sprintf("mergi success !, final image saved to %s", *out)
