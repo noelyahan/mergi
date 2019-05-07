@@ -2,7 +2,7 @@ package mergi_test
 
 import (
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/eximp"
+	"github.com/noelyahan/impexp"
 	"image"
 	"log"
 	"testing"
@@ -10,13 +10,13 @@ import (
 )
 
 func TestWatermarkLogo(t *testing.T) {
-	watermark, _ := mergi.Import(eximp.NewFileImporter("./testdata/mergi_logo_watermark.png"))
+	watermark, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_logo_watermark.png"))
 	max := watermark.Bounds().Max
 	watermark, err := mergi.Resize(watermark, uint(max.X/2), uint(max.Y/2))
 	if err != nil {
 		log.Fatalf("failed to resize: %s", err)
 	}
-	img, _ := mergi.Import(eximp.NewFileImporter("./testdata/coffee-206142_960_720.jpg"))
+	img, _ := mergi.Import(impexp.NewFileImporter("./testdata/coffee-206142_960_720.jpg"))
 	max = img.Bounds().Max
 
 	res, err := mergi.Watermark(watermark, img, image.Pt(max.X-watermark.Bounds().Max.X, max.Y-watermark.Bounds().Max.Y))
@@ -29,23 +29,23 @@ func TestWatermarkLogo(t *testing.T) {
 		log.Fatalf("failed to resize: %s", err)
 	}
 
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestWatermarkWithNil(t *testing.T) {
-	img, _ := mergi.Import(eximp.NewFileImporter("./testdata/coffee-1291656_960_720.jpg"))
+	img, _ := mergi.Import(impexp.NewFileImporter("./testdata/coffee-1291656_960_720.jpg"))
 	res, err := mergi.Watermark(nil, img, image.Pt(0, 0))
 	if err == nil {
 		t.Errorf("Expect error got [%v]", err)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 
 // https://stackoverflow.com/questions/12484403/setting-opacity-of-image-in-golang
 func TestOpacity(t *testing.T) {
-	bg, _ := mergi.Import(eximp.NewFileImporter("./testdata/lion-3576045_960_720.jpg"))
-	wm, _ := mergi.Import(eximp.NewFileImporter("./testdata/mergi_logo_watermark.png"))
+	bg, _ := mergi.Import(impexp.NewFileImporter("./testdata/lion-3576045_960_720.jpg"))
+	wm, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_logo_watermark.png"))
 	max := wm.Bounds().Max
 	wm, err := mergi.Resize(wm, uint(max.X/2), uint(max.Y/2))
 	if err != nil {
@@ -62,6 +62,6 @@ func TestOpacity(t *testing.T) {
 	wmAlpha, _ = mergi.Merge(tmplate, wmarks)
 	res, err := mergi.Watermark(wmAlpha, bg, image.ZP)
 
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 
 }

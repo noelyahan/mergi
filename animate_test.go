@@ -2,7 +2,7 @@ package mergi_test
 
 import (
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/eximp"
+	"github.com/noelyahan/impexp"
 	"image"
 	"testing"
 )
@@ -18,7 +18,7 @@ func TestAnimationWithNil(t *testing.T) {
 }
 
 func TestAnimationSlide(t *testing.T) {
-	img, _ := mergi.Import(eximp.NewURLImporter("https://cdn.pixabay.com/photo/2014/06/11/17/00/cook-366875__340.jpg"))
+	img, _ := mergi.Import(impexp.NewURLImporter("https://cdn.pixabay.com/photo/2014/06/11/17/00/cook-366875__340.jpg"))
 	cropSize := image.Pt(110, 130)
 	slide1, _ := mergi.Crop(img, image.Pt(450, 200), cropSize)
 	slide2, _ := mergi.Crop(img, image.Pt(340, 200), cropSize)
@@ -31,6 +31,6 @@ func TestAnimationSlide(t *testing.T) {
 		t.Error("Expets no error!", err)
 	}
 
-	mergi.Export(eximp.NewAnimationExporter(gif, "out.gif"))
+	mergi.Export(impexp.NewAnimationExporter(gif, "out.gif"))
 
 }

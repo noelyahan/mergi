@@ -2,7 +2,7 @@ package mergi_test
 
 import (
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/eximp"
+	"github.com/noelyahan/impexp"
 	"image"
 	"strings"
 	"testing"
@@ -17,7 +17,7 @@ func TestMergeTemplateWithNil(t *testing.T) {
 	if err != nil {
 		t.Log(err)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplateMismatch(t *testing.T) {
@@ -29,7 +29,7 @@ func TestMergeTemplateMismatch(t *testing.T) {
 	if err != nil {
 		t.Log(err)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate1(t *testing.T) {
@@ -48,7 +48,7 @@ func TestMergeTemplate1(t *testing.T) {
 	if b.Y != h {
 		t.Fatalf("Expect height [%d] got [%d]", h, b.Y)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate2(t *testing.T) {
@@ -67,13 +67,13 @@ func TestMergeTemplate2(t *testing.T) {
 	if b.Y != h {
 		t.Fatalf("Expect height [%d] got [%d]", h, b.Y)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate3(t *testing.T) {
 	template := "TTBBB"
-	large, _ := mergi.Import(eximp.NewFileImporter("./testdata/nature-3042751_960_720.jpg"))
-	small, _ := mergi.Import(eximp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
+	large, _ := mergi.Import(impexp.NewFileImporter("./testdata/nature-3042751_960_720.jpg"))
+	small, _ := mergi.Import(impexp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
 	imgs := make([]image.Image, 0)
 	imgs = append(imgs, large)
 	imgs = append(imgs, small)
@@ -93,13 +93,13 @@ func TestMergeTemplate3(t *testing.T) {
 	if b.Y != h {
 		t.Fatalf("Expect height [%d] got [%d]", h, b.Y)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate4(t *testing.T) {
 	template := "TTBBBT"
-	large, _ := mergi.Import(eximp.NewFileImporter("./testdata/nature-3042751_960_720.jpg"))
-	small, _ := mergi.Import(eximp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
+	large, _ := mergi.Import(impexp.NewFileImporter("./testdata/nature-3042751_960_720.jpg"))
+	small, _ := mergi.Import(impexp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
 	imgs := make([]image.Image, 0)
 	imgs = append(imgs, large)
 	imgs = append(imgs, small)
@@ -120,7 +120,7 @@ func TestMergeTemplate4(t *testing.T) {
 	if b.Y != h {
 		t.Fatalf("Expect height [%d] got [%d]", h, b.Y)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate5(t *testing.T) {
@@ -139,7 +139,7 @@ func TestMergeTemplate5(t *testing.T) {
 	if b.Y != h {
 		t.Fatalf("Expect height [%d] got [%d]", h, b.Y)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate6(t *testing.T) {
@@ -158,7 +158,7 @@ func TestMergeTemplate6(t *testing.T) {
 	if b.Y != h {
 		t.Fatalf("Expect height [%d] got [%d]", h, b.Y)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate7(t *testing.T) {
@@ -177,7 +177,7 @@ func TestMergeTemplate7(t *testing.T) {
 	if b.Y != h {
 		t.Fatalf("Expect height [%d] got [%d]", h, b.Y)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate8(t *testing.T) {
@@ -187,23 +187,23 @@ func TestMergeTemplate8(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Expect error got [%v]", err)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate9(t *testing.T) {
-	img, _ := mergi.Import(eximp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
+	img, _ := mergi.Import(impexp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
 	imgs := []image.Image{img, img, img, img, img, img, img, img, img}
 	res, err := mergi.Merge("TBBTBBTBB", imgs)
 	if err != nil {
 		t.Fatalf("Expect error got [%v]", err)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 func TestMergeTemplate10(t *testing.T) {
 	template := "TTTTT"
 	imgs := make([]image.Image, 0)
-	img, _ := mergi.Import(eximp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
+	img, _ := mergi.Import(impexp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
 	for i := 0; i < len(strings.Split(template, "")); i++ {
 		imgs = append(imgs, img)
 	}
@@ -211,13 +211,13 @@ func TestMergeTemplate10(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Expect error got [%v]", err)
 	}
-	mergi.Export(eximp.NewFileExporter(res, "out.png"))
+	mergi.Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 // helper functions
 func getImages(template string) []image.Image {
 	imgs := make([]image.Image, 0)
-	img, _ := mergi.Import(eximp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
+	img, _ := mergi.Import(impexp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
 	for i := 0; i < len(strings.Split(template, "")); i++ {
 		imgs = append(imgs, img)
 	}

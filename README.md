@@ -95,14 +95,14 @@ mergi \
 ```
 ##### `Mergi Library`
 ```go
-image1, _ := mergi.Import(eximp.NewFileImporter("./testdata/mergi_bg_1.png"))
-image2, _ := mergi.Import(eximp.NewFileImporter("./testdata/mergi_bg_2.png"))
+image1, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
+image2, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_2.png"))
 
 horizontalImage, _ := mergi.Merge("TT", []image.Image{image1, image2})
-mergi.Export(eximp.NewFileExporter(horizontalImage, "horizontal.png"))
+mergi.Export(impexp.NewFileExporter(horizontalImage, "horizontal.png"))
 
 verticalImage, _ := mergi.Merge("TB", []image.Image{image1, image2})
-mergi.Export(eximp.NewFileExporter(verticalImage, "vertical.png"))
+mergi.Export(impexp.NewFileExporter(verticalImage, "vertical.png"))
 ```
 
 
@@ -122,9 +122,9 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-img, _ := mergi.Import(eximp.NewFileImporter("./testdata/mergi_bg_1.png"))
+img, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
 res, _ := mergi.Crop(img, image.Pt(10, 40), image.Pt(200, 110))
-mergi.Export(eximp.NewFileExporter(res, "crop.png"))
+mergi.Export(impexp.NewFileExporter(res, "crop.png"))
 ```
 
 <br />
@@ -143,9 +143,9 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-img, _ := mergi.Import(eximp.NewFileImporter("./testdata/mergi_bg_1.png"))
+img, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
 res, _ := mergi.Resize(img, uint(180), uint(80))
-mergi.Export(eximp.NewFileExporter(res, "resize.png"))
+mergi.Export(impexp.NewFileExporter(res, "resize.png"))
 ```
 
 <br />
@@ -164,11 +164,11 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-originalImage, _ := mergi.Import(eximp.NewFileImporter("./testdata/mergi_bg_1.png"))
-watermarkImage, _ := mergi.Import(eximp.NewFileImporter("./testdata/glass-mergi_logo_watermark_90x40.jpg"))
+originalImage, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
+watermarkImage, _ := mergi.Import(impexp.NewFileImporter("./testdata/glass-mergi_logo_watermark_90x40.jpg"))
 
 res, _ := mergi.Watermark(watermarkImage, originalImage, image.Pt(250, 10))
-mergi.Export(eximp.NewFileExporter(res, "watermark.png"))
+mergi.Export(impexp.NewFileExporter(res, "watermark.png"))
 ```
 
 <br />
@@ -199,11 +199,11 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-image1, _ := mergi.Import(eximp.NewFileImporter("./testdata/mergi_bg_1.png"))
-image2, _ := mergi.Import(eximp.NewFileImporter("./testdata/mergi_bg_2.png"))
+image1, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
+image2, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_2.png"))
 
 gif, _ := mergi.Animate([]image.Image{image1, image2}, 50)
-mergi.Export(eximp.NewAnimationExporter(gif, "out.gif"))
+mergi.Export(impexp.NewAnimationExporter(gif, "out.gif"))
 ```
 
 <br />
@@ -223,8 +223,8 @@ mergi.Export(eximp.NewAnimationExporter(gif, "out.gif"))
 `Note: Ease function can be applied with any function, in this example it's applied with Watermark function`
 ```go
 // Load background and the square images
-square, _ := mergi.Import(eximp.NewFileImporter("./testdata/square.jpg"))
-bg, _ := mergi.Import(eximp.NewFileImporter("./testdata/white_bg.jpg"))
+square, _ := mergi.Import(impexp.NewFileImporter("./testdata/square.jpg"))
+bg, _ := mergi.Import(impexp.NewFileImporter("./testdata/white_bg.jpg"))
 
 // Init images frames to add applied ease frames
 frames := make([]image.Image, 0)
@@ -244,7 +244,7 @@ for i := 0; i < to; i += speed {
 
 // For preview example, save as a gif
 gif, _ := mergi.Animate(frames, 1)
-mergi.Export(eximp.NewAnimationExporter(gif, "out.gif"))
+mergi.Export(impexp.NewAnimationExporter(gif, "out.gif"))
 ```
 
 
