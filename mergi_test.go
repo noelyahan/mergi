@@ -2,7 +2,7 @@ package mergi_test
 
 import (
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/eximp"
+	"github.com/noelyahan/impexp"
 	"image"
 	"log"
 )
@@ -12,7 +12,7 @@ import (
 // and saving the import_export image file to disk
 func ExampleCrop_croping() {
 	// Get the image content by passing image path url or file path
-	img, err := mergi.Import(eximp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
+	img, err := mergi.Import(impexp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
 	if err != nil {
 		log.Fatalf("failed to open: %s", err)
 	}
@@ -31,7 +31,7 @@ func ExampleCrop_croping() {
 	}
 
 	// Let's save the image
-	err = mergi.Export(eximp.NewFileExporter(resultImage, "result.jpg"))
+	err = mergi.Export(impexp.NewFileExporter(resultImage, "result.jpg"))
 	if err != nil {
 		log.Fatalf("failed to save: %s", err)
 	}
@@ -42,7 +42,7 @@ func ExampleCrop_croping() {
 // and saving the import_export image file to disk
 func ExampleMerge_merging() {
 	// Get the image content by passing image path url or file path
-	img, err := mergi.Import(eximp.NewFileImporter("testdata/evraiki-2514543_240_180.jpg"))
+	img, err := mergi.Import(impexp.NewFileImporter("testdata/evraiki-2514543_240_180.jpg"))
 	if err != nil {
 		log.Fatalf("failed to open: %s", err)
 	}
@@ -59,7 +59,7 @@ func ExampleMerge_merging() {
 	}
 
 	// Let's save the image
-	err = mergi.Export(eximp.NewFileExporter(resultImage, "result.jpg"))
+	err = mergi.Export(impexp.NewFileExporter(resultImage, "result.jpg"))
 	if err != nil {
 		log.Fatalf("failed to save: %s", err)
 	}
@@ -70,7 +70,7 @@ func ExampleMerge_merging() {
 // and saving the import_export image file to disk
 func ExampleResize_resizing() {
 	// Get the image content by passing image path url or file path
-	img, err := mergi.Import(eximp.NewFileImporter("testdata/evraiki-2514543_240_180.jpg"))
+	img, err := mergi.Import(impexp.NewFileImporter("testdata/evraiki-2514543_240_180.jpg"))
 	if err != nil {
 		log.Fatalf("failed to open: %s", err)
 	}
@@ -87,7 +87,7 @@ func ExampleResize_resizing() {
 	}
 
 	// Let's save the image
-	err = mergi.Export(eximp.NewFileExporter(resultImage, "result.jpg"))
+	err = mergi.Export(impexp.NewFileExporter(resultImage, "result.jpg"))
 	if err != nil {
 		log.Fatalf("failed to save: %s", err)
 	}
@@ -98,12 +98,12 @@ func ExampleResize_resizing() {
 // and saving the import_export image file to disk
 func ExampleWatermark_watermarking() {
 	// Get the image content by passing image path url or file path
-	imgOriginal, err := mergi.Import(eximp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
+	imgOriginal, err := mergi.Import(impexp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
 	if err != nil {
 		log.Fatalf("failed to open: %s", err)
 	}
 	// Get the image content by passing image path url or file path
-	imgWatermark, err := mergi.Import(eximp.NewFileImporter("./testdata/mergi_logo_watermark.png"))
+	imgWatermark, err := mergi.Import(impexp.NewFileImporter("./testdata/mergi_logo_watermark.png"))
 	if err != nil {
 		log.Fatalf("failed to open: %s", err)
 	}
@@ -119,7 +119,7 @@ func ExampleWatermark_watermarking() {
 	}
 
 	// Let's save the image
-	err = mergi.Export(eximp.NewFileExporter(resultImage, "result.jpg"))
+	err = mergi.Export(impexp.NewFileExporter(resultImage, "result.jpg"))
 	if err != nil {
 		log.Fatalf("failed to save: %s", err)
 	}
@@ -130,13 +130,13 @@ func ExampleWatermark_watermarking() {
 // Mergi.Import will return go standard image.Image
 func ExampleImport_importing() {
 	// Get the image content by passing image path url or file path
-	imgFromLocal, err := mergi.Import(eximp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
+	imgFromLocal, err := mergi.Import(impexp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
 	if err != nil {
 		log.Fatalf("failed to load via local: %s", err)
 	}
 	// Get the image content by passing image path url or file path
 	// Reference: https://pixabay.com/en/woman-old-senior-female-elderly-1031000/
-	imageFromURL, err := mergi.Import(eximp.NewURLImporter("https://cdn.pixabay.com/photo/2015/11/07/11/17/woman-1031000__340.jpg"))
+	imageFromURL, err := mergi.Import(impexp.NewURLImporter("https://cdn.pixabay.com/photo/2015/11/07/11/17/woman-1031000__340.jpg"))
 	if err != nil {
 		log.Fatalf("failed to load via url: %s", err)
 	}
@@ -151,13 +151,13 @@ func ExampleImport_importing() {
 // Mergi supports base64, file, animation exporters
 func ExampleExport_exporting() {
 	// Get the image content by passing image path url or file path
-	imgFromLocal, err := mergi.Import(eximp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
+	imgFromLocal, err := mergi.Import(impexp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
 	if err != nil {
 		log.Fatalf("failed to load via local: %s", err)
 	}
 	// Get the image content by passing image path url or file path
 	// Reference: https://pixabay.com/en/woman-old-senior-female-elderly-1031000/
-	imageFromURL, err := mergi.Import(eximp.NewURLImporter("https://cdn.pixabay.com/photo/2015/11/07/11/17/woman-1031000__340.jpg"))
+	imageFromURL, err := mergi.Import(impexp.NewURLImporter("https://cdn.pixabay.com/photo/2015/11/07/11/17/woman-1031000__340.jpg"))
 	if err != nil {
 		log.Fatalf("failed to load via url: %s", err)
 	}
@@ -170,11 +170,11 @@ func ExampleExport_exporting() {
 // Mergi provides the simplified api to animate any given image array result
 func ExampleAnimate_animating() {
 	// Get the image content by passing image path url or file path
-	img1, err := mergi.Import(eximp.NewFileImporter("testdata/avocado-3210885_960_720.jpg"))
+	img1, err := mergi.Import(impexp.NewFileImporter("testdata/avocado-3210885_960_720.jpg"))
 	if err != nil {
 		log.Fatalf("failed to load via local: %s", err)
 	}
-	img2, err := mergi.Import(eximp.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
+	img2, err := mergi.Import(impexp.NewFileImporter("testdata/cherry-3074284_960_720.jpg"))
 	if err != nil {
 		log.Fatalf("failed to load via local: %s", err)
 	}
@@ -187,5 +187,5 @@ func ExampleAnimate_animating() {
 	}
 
 	// Export final result via animation exporter
-	mergi.Export(eximp.NewAnimationExporter(animation, "result.gif"))
+	mergi.Export(impexp.NewAnimationExporter(animation, "result.gif"))
 }

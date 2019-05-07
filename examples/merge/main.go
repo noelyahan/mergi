@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/eximp"
+	"github.com/noelyahan/impexp"
 	"image"
 	"log"
 )
@@ -16,38 +16,38 @@ import (
 */
 
 func main() {
-	img, err := mergi.Import(eximp.NewFileImporter("testdata/evraiki-2514543_240_180.jpg"))
+	img, err := mergi.Import(impexp.NewFileImporter("testdata/evraiki-2514543_240_180.jpg"))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	tigerLarge, err := mergi.Import(eximp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
+	tigerLarge, err := mergi.Import(impexp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	rabbitLarge, err := mergi.Import(eximp.NewFileImporter("testdata/rabbit-1882699_960_720.jpg"))
+	rabbitLarge, err := mergi.Import(impexp.NewFileImporter("testdata/rabbit-1882699_960_720.jpg"))
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//	lets try to merge 2 images in horizontal manner
 	res := mergeHorizontal2([]image.Image{img, img})
-	mergi.Export(eximp.NewFileExporter(res, getPath("horizontal_2.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("horizontal_2.png")))
 
 	// now lets try vertical with 2 images
 	res = mergeVertical2([]image.Image{img, img})
-	mergi.Export(eximp.NewFileExporter(res, getPath("vertical_2.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("vertical_2.png")))
 
 	// now lets increase the image count to 4 and do the same
 	res = mergeHorizontal4([]image.Image{img, img, img, img})
-	mergi.Export(eximp.NewFileExporter(res, getPath("horizontal_4.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("horizontal_4.png")))
 
 	res = mergeVertical4([]image.Image{img, img, img, img})
-	mergi.Export(eximp.NewFileExporter(res, getPath("vertical_4.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("vertical_4.png")))
 
 	// now lets explore how 2x2 align looks like
 	res = merge2x2([]image.Image{img, img, img, img})
-	mergi.Export(eximp.NewFileExporter(res, getPath("2x2.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("2x2.png")))
 
 	// lets crop all friends characters
 	tiger, _ := mergi.Crop(tigerLarge, image.Pt(0, 0), image.Pt(495, 600))
@@ -58,20 +58,20 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	mergi.Export(eximp.NewFileExporter(res, getPath("tiger_rabbit.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("tiger_rabbit.png")))
 
 	res, err = mergi.Merge("TT", []image.Image{rabbit, tiger})
 	if err != nil {
 		log.Fatal(err)
 	}
-	mergi.Export(eximp.NewFileExporter(res, getPath("rabbit_tiger.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("rabbit_tiger.png")))
 
 	// lets build some next level merge template
 	// for this I'm gonna get some help from placeholder site
-	img500x500, _ := mergi.Import(eximp.NewURLImporter("https://via.placeholder.com/500x500"))
-	img250x250, _ := mergi.Import(eximp.NewURLImporter("https://via.placeholder.com/250x250"))
-	img200x200, _ := mergi.Import(eximp.NewURLImporter("https://via.placeholder.com/200x200"))
-	img200x100, _ := mergi.Import(eximp.NewURLImporter("https://via.placeholder.com/200x100"))
+	img500x500, _ := mergi.Import(impexp.NewURLImporter("https://via.placeholder.com/500x500"))
+	img250x250, _ := mergi.Import(impexp.NewURLImporter("https://via.placeholder.com/250x250"))
+	img200x200, _ := mergi.Import(impexp.NewURLImporter("https://via.placeholder.com/200x200"))
+	img200x100, _ := mergi.Import(impexp.NewURLImporter("https://via.placeholder.com/200x100"))
 
 	// let's define a template
 	template := "TTBTBBTBBBBT"
@@ -96,7 +96,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	mergi.Export(eximp.NewFileExporter(res, getPath("next_level.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("next_level.png")))
 }
 
 func mergeHorizontal2(imgs []image.Image) image.Image {

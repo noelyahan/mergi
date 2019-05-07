@@ -1,7 +1,7 @@
 package mergi
 
 import (
-	"github.com/noelyahan/eximp"
+	"github.com/noelyahan/impexp"
 	"image"
 	"strings"
 	"testing"
@@ -29,7 +29,7 @@ func TestCrop(t *testing.T) {
 		t.Errorf("Crop test fails [%v]", err)
 		return
 	}
-	Export(eximp.NewFileExporter(img, "out.png"))
+	Export(impexp.NewFileExporter(img, "out.png"))
 }
 
 func TestCropWithHeigthWidth(t *testing.T) {
@@ -43,7 +43,7 @@ func TestCropWithHeigthWidth(t *testing.T) {
 		t.Errorf("Crop test fails [%v]", err)
 		return
 	}
-	Export(eximp.NewFileExporter(img, "out.png"))
+	Export(impexp.NewFileExporter(img, "out.png"))
 }
 
 func TestGetYAxisCount(t *testing.T) {
@@ -70,7 +70,7 @@ func TestGetYAxisCount(t *testing.T) {
 }
 
 func TestCropAndMerge(t *testing.T) {
-	img, _ := Import(eximp.NewFileImporter("./testdata/tree-146874_960_720.png"))
+	img, _ := Import(impexp.NewFileImporter("./testdata/tree-146874_960_720.png"))
 	imgs := make([]image.Image, 5)
 	template := "TTTTT"
 	imgs[0], _ = Crop(img, image.Pt(0, 0), image.Pt(100, 140))
@@ -82,13 +82,13 @@ func TestCropAndMerge(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Expect error got [%v]", err)
 	}
-	Export(eximp.NewFileExporter(res, "out.png"))
+	Export(impexp.NewFileExporter(res, "out.png"))
 }
 
 // helper functions
 func getImages(template string) []image.Image {
 	imgs := make([]image.Image, 0)
-	img, _ := Import(eximp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
+	img, _ := Import(impexp.NewFileImporter("./testdata/evraiki-2514543_240_180.jpg"))
 	for i := 0; i < len(strings.Split(template, "")); i++ {
 		imgs = append(imgs, img)
 	}
