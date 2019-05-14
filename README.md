@@ -26,6 +26,7 @@ Image manipulation [<b>go library</b>](http://godoc.org/github.com/noelyahan/mer
 - 🖃 Watermark
 - 💖 Animate
 - 🔥 Easing
+- 🦎 Transition
 
 <br />
 
@@ -94,14 +95,14 @@ mergi \
 ```
 ##### `Mergi Library`
 ```go
-image1, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
-image2, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_2.png"))
+image1, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
+image2, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_2.png"))
 
 horizontalImage, _ := mergi.Merge("TT", []image.Image{image1, image2})
-mergi.Export(io.NewFileExporter(horizontalImage, "horizontal.png"))
+mergi.Export(impexp.NewFileExporter(horizontalImage, "horizontal.png"))
 
 verticalImage, _ := mergi.Merge("TB", []image.Image{image1, image2})
-mergi.Export(io.NewFileExporter(verticalImage, "vertical.png"))
+mergi.Export(impexp.NewFileExporter(verticalImage, "vertical.png"))
 ```
 
 
@@ -121,9 +122,9 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-img, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
+img, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
 res, _ := mergi.Crop(img, image.Pt(10, 40), image.Pt(200, 110))
-mergi.Export(io.NewFileExporter(res, "crop.png"))
+mergi.Export(impexp.NewFileExporter(res, "crop.png"))
 ```
 
 <br />
@@ -142,9 +143,9 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-img, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
+img, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
 res, _ := mergi.Resize(img, uint(180), uint(80))
-mergi.Export(io.NewFileExporter(res, "resize.png"))
+mergi.Export(impexp.NewFileExporter(res, "resize.png"))
 ```
 
 <br />
@@ -163,11 +164,11 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-originalImage, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
-watermarkImage, _ := mergi.Import(io.NewFileImporter("./testdata/glass-mergi_logo_watermark_90x40.jpg"))
+originalImage, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
+watermarkImage, _ := mergi.Import(impexp.NewFileImporter("./testdata/glass-mergi_logo_watermark_90x40.jpg"))
 
 res, _ := mergi.Watermark(watermarkImage, originalImage, image.Pt(250, 10))
-mergi.Export(io.NewFileExporter(res, "watermark.png"))
+mergi.Export(impexp.NewFileExporter(res, "watermark.png"))
 ```
 
 <br />
@@ -198,11 +199,11 @@ mergi \
 
 ##### `Mergi Library`
 ```go
-image1, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_1.png"))
-image2, _ := mergi.Import(io.NewFileImporter("./testdata/mergi_bg_2.png"))
+image1, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_1.png"))
+image2, _ := mergi.Import(impexp.NewFileImporter("./testdata/mergi_bg_2.png"))
 
 gif, _ := mergi.Animate([]image.Image{image1, image2}, 50)
-mergi.Export(io.NewAnimationExporter(gif, "out.gif"))
+mergi.Export(impexp.NewAnimationExporter(gif, "out.gif"))
 ```
 
 <br />
@@ -211,52 +212,54 @@ mergi.Export(io.NewAnimationExporter(gif, "out.gif"))
 
 []()                   | []() | []() | []()
 -----------------------|----------------------|----------------------|----------------------
-![dstImage](testdata/doc/ease/InBounce.gif)<br/><center>InBounce</center> | ![dstImage](testdata/doc/ease/InBack.gif)<br/><center>InBack</center> | ![dstImage](testdata/doc/ease/InOutQuad.gif)<center>InOutQuad</center> | ![dstImage](testdata/doc/ease/InSine.gif)<br/><center>InSine</center>
-![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InElastic.gif)<br/><center>InElastic</center> | ![dstImage](testdata/doc/ease/InOutExpo.gif)<center>InOutExpo</center> | ![dstImage](testdata/doc/ease/Linear.gif)<br/><center>Linear</center>
-![dstImage](testdata/doc/ease/InOutBounce.gif)<br/><center>InOutBounce</center> | ![dstImage](testdata/doc/ease/InCirc.gif)<br/><center>InCirc</center> | ![dstImage](testdata/doc/ease/InOutCubic.gif)<center>InOutCubic</center> | ![dstImage](testdata/doc/ease/InOutQuart.gif)<br/><center>InOutQuart</center>
-![dstImage](testdata/doc/ease/InOutBack.gif)<br/><center>InOutBack</center> | ![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InOutCirc.gif)<center>InOutCirc</center> | ![dstImage](testdata/doc/ease/InOutSine.gif)<center>InOutSine</center>
+![dstImage](testdata/doc/ease/InBounce.gif)<br/><center>InBounce</center> | ![dstImage](testdata/doc/ease/InBack.gif)<br/><center>InBack</center> | ![dstImage](testdata/doc/ease/InOutQuad.gif)<br/><center>InOutQuad</center> | ![dstImage](testdata/doc/ease/InSine.gif)<br/><center>InSine</center>
+![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InElastic.gif)<br/><center>InElastic</center> | ![dstImage](testdata/doc/ease/InOutExpo.gif)<br/><center>InOutExpo</center> | ![dstImage](testdata/doc/ease/Linear.gif)<br/><center>Linear</center>
+![dstImage](testdata/doc/ease/InOutBounce.gif)<br/><center>InOutBounce</center> | ![dstImage](testdata/doc/ease/InCirc.gif)<br/><center>InCirc</center> | ![dstImage](testdata/doc/ease/InOutCubic.gif)<br/><center>InOutCubic</center> | ![dstImage](testdata/doc/ease/InOutQuart.gif)<br/><center>InOutQuart</center>
+![dstImage](testdata/doc/ease/InOutBack.gif)<br/><center>InOutBack</center> | ![dstImage](testdata/doc/ease/InCubic.gif)<br/><center>InCubic</center> | ![dstImage](testdata/doc/ease/InOutCirc.gif)<br/><center>InOutCirc</center> | ![dstImage](testdata/doc/ease/InOutSine.gif)<br/><center>InOutSine</center>
 ![dstImage](testdata/doc/ease/InExpo.gif)<br/><center>InExpo</center> | ![dstImage](testdata/doc/ease/OutBounce.gif)<br/><center>OutBounce</center> | ![dstImage](testdata/doc/ease/InQuint.gif)<br/><center>InQuint</center>
 
 ##### `Mergi Library`
+
+`Note: Ease function can be applied with any function, in this example it's applied with Watermark function`
 ```go
-mergiLogo, _ := mergi.Import(io.NewFileImporter("testdata/mergi_logo_watermark.png"))
+// Load background and the square images
+square, _ := mergi.Import(impexp.NewFileImporter("./testdata/square.jpg"))
+bg, _ := mergi.Import(impexp.NewFileImporter("./testdata/white_bg.jpg"))
 
-// scale down
-mergiLogoSmall, _ := mergi.Resize(mergiLogo, uint(mergiLogo.Bounds().Max.X/2), uint(mergiLogo.Bounds().Max.Y/2))
+// Init images frames to add applied ease frames
+frames := make([]image.Image, 0)
 
-// animation image frames
-images := make([]image.Image, 0)
+// Init the limts of the Ease
+to := bg.Bounds().Max.X - square.Bounds().Max.X
+posY := bg.Bounds().Max.Y/2 - square.Bounds().Max.Y/2
+speed := 4
 
-// animation starts from
-from := image.Pt(0, 0)
-
-// animation ends to
-to := image.Pt(mergiLogoSmall.Bounds().Max.X, mergiLogoSmall.Bounds().Max.Y)
-
-// easing speed
-easeSpeed := 3.5
-
-// ease pkg contains many tested animations such as: InBack, InOutQuad, InSine etc..
-easingPoints := ease.AnimatePoints(ease.InBounce, from, to, easeSpeed)
-
-// make animation frames with crop operation
-for _, from := range easingPoints {
-    img, _ := mergi.Crop(mergiLogoSmall, from, to)
-    images = append(images, img)
+// Ease from 0 to width of background
+for i := 0; i < to; i += speed {
+  // Apply Easeing function InBounce
+  posX := mergi.Ease(float64(i), 0, float64(to), mergi.InBounce)
+  img, _ := mergi.Watermark(square, bg, image.Pt(int(posX), posY))
+  frames = append(frames, img)
 }
 
-// animate images as gif
-fps := 2
-gif, _ := mergi.Animate(images, fps)
-
-// export gif as a file
-mergi.Export(io.NewAnimationExporter(gif, "examples/easing/res/ease.gif"))
+// For preview example, save as a gif
+gif, _ := mergi.Animate(frames, 1)
+mergi.Export(impexp.NewAnimationExporter(gif, "out.gif"))
 ```
 
 
 
 
 <br />
+
+#### 🦎 Transition
+
+[]()                   | []() | []() | []()
+-----------------------|----------------------|----------------------|----------------------
+![dstImage](./testdata/doc/trans/SlideBar.gif)<br/><center>SlideBar</center> | ![dstImage](./testdata/doc/trans/Ink1.gif)<br/><center>Ink1</center> | ![dstImage](./testdata/doc/trans/Ink2.gif)<br/><center>Ink2</center> | ![dstImage](./testdata/doc/trans/Ink3.gif)<br/><center>Ink3</center>
+![dstImage](./testdata/doc/trans/ScaleUpFastRect.gif)<br/><center>ScaleUpFastRect</center> | ![dstImage](./testdata/doc/trans/ScaleDownFastRect.gif)<br/><center>ScaleDownFastRect</center> | ![dstImage](./testdata/doc/trans/ScaleUpFastCircle.gif)<br/><center>ScaleUpFastCircle</center> | ![dstImage](./testdata/doc/trans/ScaleDownFastCircle.gif)<br/><center>ScaleDownFastCircle</center>
+
+
 
 Learn more [examples](examples)
 
@@ -282,6 +285,7 @@ $ go get github.com/noelyahan/mergi
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <br/>
+
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification.
 Contributions of any kind are welcome!
 

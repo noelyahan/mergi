@@ -1,15 +1,16 @@
-package main
+package mergi_test
 
 import (
-	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/impexp"
+	"testing"
 	"image"
+	"github.com/noelyahan/impexp"
+	"github.com/noelyahan/mergi"
 )
 
-func main() {
+func TestEase(t *testing.T) {
 	// Load background and the square images
-	square, _ := mergi.Import(impexp.NewFileImporter("testdata/square.jpg"))
-	bg, _ := mergi.Import(impexp.NewFileImporter("testdata/white_bg.jpg"))
+	square, _ := mergi.Import(impexp.NewFileImporter("./testdata/square.jpg"))
+	bg, _ := mergi.Import(impexp.NewFileImporter("./testdata/white_bg.jpg"))
 
 	// Init images frames to add applied ease frames
 	frames := make([]image.Image, 0)
@@ -29,5 +30,5 @@ func main() {
 
 	// For preview example, save as a gif
 	gif, _ := mergi.Animate(frames, 1)
-	mergi.Export(impexp.NewAnimationExporter(gif, "examples/easing/res/out.gif"))
+	mergi.Export(impexp.NewAnimationExporter(gif, "out.gif"))
 }

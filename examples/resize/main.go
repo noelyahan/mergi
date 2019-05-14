@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/mergi/io"
+	"github.com/noelyahan/impexp"
 	"log"
 )
 
 // This example will guide how to resize a image using mergi.Resize API
 func main() {
-	img, err := mergi.Import(io.NewFileImporter("testdata/coffee-171653_960_720.jpg"))
+	img, err := mergi.Import(impexp.NewFileImporter("testdata/coffee-171653_960_720.jpg"))
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -23,7 +23,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	mergi.Export(io.NewFileExporter(res, getPath("scale_up.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("scale_up.png")))
 
 	// lets scale down
 	newWidth = uint(img.Bounds().Max.X / scale)
@@ -32,7 +32,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	mergi.Export(io.NewFileExporter(res, getPath("scale_down.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("scale_down.png")))
 
 }
 

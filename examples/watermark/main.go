@@ -3,23 +3,25 @@ package main
 import (
 	"fmt"
 	"github.com/noelyahan/mergi"
-	"github.com/noelyahan/mergi/io"
+	"github.com/noelyahan/impexp"
 	"image"
 	"log"
 )
 
 func main() {
 	// Let's import some images from local file system
-	img, err := mergi.Import(io.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
+	img, err := mergi.Import(impexp.NewFileImporter("testdata/tiger-2320819_960_720.jpg"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	watermarkImage, err := mergi.Import(io.NewFileImporter("testdata/mergi_logo_watermark.png"))
+	watermarkImage, err := mergi.Import(impexp.NewFileImporter("testdata/mergi_logo_watermark.png"))
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	watermarkTopLeft(watermarkImage, img)
+
+	watermarkTopLeftWithOpacity(watermarkImage, img)
 
 	watermarkResizeTopRightWith(watermarkImage, img)
 
@@ -35,8 +37,19 @@ func watermarkTopLeft(watermarkImage, img image.Image) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	mergi.Export(io.NewFileExporter(res, getPath("watermark_1.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("watermark_1.png")))
+}
 
+func watermarkTopLeftWithOpacity(watermarkImage, img image.Image) {
+	opecWatermark, err := mergi.Opacity(watermarkImage, 0.5)
+	if err != nil {
+		log.Fatal(err)
+	}
+	res, err := mergi.Watermark(opecWatermark, img, image.Pt(0, 0))
+	if err != nil {
+		log.Fatal(err)
+	}
+	mergi.Export(impexp.NewFileExporter(res, getPath("watermark_1_opacity.png")))
 }
 
 func watermarkResizeTopRightWith(watermarkImage, img image.Image) {
@@ -48,7 +61,7 @@ func watermarkResizeTopRightWith(watermarkImage, img image.Image) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	mergi.Export(io.NewFileExporter(res, getPath("watermark_2.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("watermark_2.png")))
 }
 
 func watermarkEverywhere(watermarkImage, img image.Image) {
@@ -69,17 +82,17 @@ func watermarkEverywhere(watermarkImage, img image.Image) {
 		}
 
 	}
-	mergi.Export(io.NewFileExporter(res, getPath("watermark_3.png")))
+	mergi.Export(impexp.NewFileExporter(res, getPath("watermark_3.png")))
 
 }
 
 func identityWatermark() {
-	idCard, _ := mergi.Import(io.NewURLImporter("https://cdn.pixabay.com/photo/2013/07/12/19/03/id-154285_960_720.png"))
-	profileImage, _ := mergi.Import(io.NewURLImporter("https://cdn.pixabay.com/photo/2017/08/30/17/27/business-woman-2697954_960_720.jpg"))
+	idCard, _ := mergi.Import(impexp.NewURLImporter("https://cdn.pixabay.com/photo/2013/07/12/19/03/id-154285_960_720.png"))
+	profileImage, _ := mergi.Import(impexp.NewURLImporter("https://cdn.pixabay.com/photo/2017/08/30/17/27/business-woman-2697954_960_720.jpg"))
 
 	cropedProfile, _ := mergi.Crop(profileImage, image.Pt(300, 50), image.Pt(217, 254))
 	finalImage, _ := mergi.Watermark(cropedProfile, idCard, image.Pt(20, 63))
-	mergi.Export(io.NewFileExporter(finalImage, getPath("watermark_4.png")))
+	mergi.Export(impexp.NewFileExporter(finalImage, getPath("watermark_4.png")))
 }
 
 func getPath(name string) string {
