@@ -3,8 +3,8 @@ package mergi_test
 import (
 	"github.com/noelyahan/mergi"
 	"github.com/noelyahan/impexp"
-	"github.com/pkg/errors"
 	"testing"
+	"errors"
 )
 
 func TestNewWithFiles(t *testing.T) {
