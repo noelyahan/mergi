@@ -291,6 +291,10 @@ Contributions of any kind are welcome!
 
 <br />
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=noelyahan/mergi&type=Timeline)](https://star-history.com/#noelyahan/mergi&Timeline)
+
 ### 🔵 License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
